@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: rgb(30,23,106);
+    background: radial-gradient(circle, rgba(30,23,106,1) 48%, rgba(76,33,149,1) 97%);
+}
+.container{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 40%;
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    border-radius: 20px;
+}
+.todolist{
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    position: relative;
+    top: 5%;
+}
+.todolist h1 , ion-icon{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+.todolist h1{
+    font-size: 40px;
+}
+ion-icon{
+    margin-top: 0.5%;
+    width: 40px;
+    height: 40px;
+}
+.todolist_action{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-top: 10%;
+ gap: 5%;
+}
+input{
+    width: 250px;
+    height: 40px;
+    border-radius: 20px;
+    background-color:	#BEBEBE;
+    border: 1px solid #BEBEBE;
+}
+button{
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: purple;
+    color: white;
+    border: 2px solid purple;
+}
+
