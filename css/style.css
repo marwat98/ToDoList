@@ -85,4 +85,24 @@ button:hover{
     width: 480px;
     height: 380px;
 }
+table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    text-align: left;
+    border-radius: 10px; 
+    overflow: hidden; 
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+th {
+    background-color: #edeef0;
+}
+
+
 
