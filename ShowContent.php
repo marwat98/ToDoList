@@ -1,7 +1,8 @@
 <?php 
 require_once('DataBase.php');
+require_once('Interfaces/DataBaseContent.php');
 
-class ShowContent{
+class ShowContent implements DataBaseContent{
     public function dataBaseContent():array{
         $db = new DataBase("localhost","root","","toDoList");
         $conn = $db->connection();
