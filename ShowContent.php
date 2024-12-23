@@ -9,6 +9,11 @@ class ShowContent implements DataBaseContent{
 
         $sql = "SELECT id,note,date_time from addToDataBase";
         $result = $conn->query($sql);
+
+        if (!$result) {
+            throw new Exception("Błąd zapytania SQL: " . $conn->error);
+        }
+        
         $data = [];
         
         while ($row = $result->fetch_assoc()) {

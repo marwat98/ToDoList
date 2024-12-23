@@ -5,8 +5,10 @@
             <ion-icon name="list-circle-outline"></ion-icon>
         </div>
         <div class="todolist_action">
-            <input class="addText" type="text" id="toDo" name="toDo" placeholder="Dodaj tekst">
-            <button id="add" name="add">Dodaj</button>
+            <form method = "post" action="DataBaseActions.php">
+                <input class="addText" type="text" id="note" name="note" placeholder="Dodaj tekst" required>
+                <button id="add" name="add" type="submit">Dodaj</button>
+            </form>
         </div>
     </div>
 </section>
