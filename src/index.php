@@ -1,6 +1,7 @@
 <?php 
 require_once('config.php');
-require_once('ShowContent.php');
+require_once('src/ShowNotes/ShowContent.php');
+
 
 $showContent = new ShowContent();
 $data = $showContent->dataBaseContent();

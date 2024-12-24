@@ -1,6 +1,6 @@
 <?php 
-require_once('DataBase.php');
-require_once('Interfaces/DataBaseContent.php');
+require_once('src/DataBaseStructureConnection/DataBase.php');
+require_once('interfaces/DataBaseContent.php');
 
 class ShowContent implements DataBaseContent{
     public function dataBaseContent():array{
