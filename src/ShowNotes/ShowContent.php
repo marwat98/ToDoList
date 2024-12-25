@@ -1,6 +1,7 @@
 <?php 
-require_once('src/DataBaseStructureConnection/DataBase.php');
-require_once('interfaces/DataBaseContent.php');
+namespace ShowNotes;
+use DataBaseConnection\DataBase;
+use interfaces\DataBaseContent;
 
 class ShowContent implements DataBaseContent{
     public function dataBaseContent():array{
@@ -11,7 +12,7 @@ class ShowContent implements DataBaseContent{
         $result = $conn->query($sql);
 
         if (!$result) {
-            throw new Exception("Błąd zapytania SQL: " . $conn->error);
+            throw new \Exception("Błąd zapytania SQL: " . $conn->error);
         }
         
         $data = [];

@@ -1,6 +1,7 @@
 <?php
-require_once('src/ShowNotes/ShowContent.php');
-require_once('interfaces/AddContentToDataBase.php');
+namespace DataBaseFunction;
+use DataBaseConnection\DataBase;
+use interfaces\AddContentToDataBase;
 
 class AddToDataBase implements AddContentToDataBase{
 
@@ -12,7 +13,7 @@ class AddToDataBase implements AddContentToDataBase{
         $stmt = $conn->prepare($sglInsert);
 
         if (!$stmt) {
-            throw new Exception("Error loading statement: " . $conn->error);
+            throw new \Exception("Error loading statement: " . $conn->error);
         }
 
         $stmt->bind_param("ss", $note, $date);

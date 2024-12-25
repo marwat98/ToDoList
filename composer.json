@@ -1,5 +1,13 @@
 {
     "require": {
         "twig/twig": "^3.17"
+    },
+    "autoload": {
+           "psr-4": {
+                "interfaces\\": "src/interfaces/",
+                "DataBaseConnection\\": "src/DataBaseConnection/",
+                "ShowNotes\\": "src/ShowNotes/",
+                "DataBaseFunction\\": "src/DataBaseConnection/"
+           }
     }
 }
