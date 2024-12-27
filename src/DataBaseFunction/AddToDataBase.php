@@ -1,35 +1,39 @@
 <?php
-namespace DataBaseFunction;
-use DataBaseConnection\DataBase;
-use interfaces\AddContentToDataBase;
+    namespace DataBaseFunction;
+    use DataBaseConnection\DataBase;
+    use ToDoInterface\AddNoteToDataBaseInterface;
 
-class AddToDataBase implements AddContentToDataBase{
+    class AddToDataBase implements AddNoteToDataBaseInterface{
 
-    public function addNote(string $note,string $date):bool{
-        $db = new DataBase("localhost","root","","toDoList");
-        $conn = $db->connection();
-
-        $sglInsert = "INSERT INTO addToDataBase (note,date_time) VALUES (?,?)";
-        $stmt = $conn->prepare($sglInsert);
-
-        if (!$stmt) {
-            throw new \Exception("Error loading statement: " . $conn->error);
+        private $twig;
+        public function __construct($twig){
+            $this->twig = $twig;
         }
+        public function addNote(string $note, string $template,$data = array(),string $sqlInsert):bool{
 
-        $stmt->bind_param("ss", $note, $date);
+            $db = new DataBase("localhost","root","","toDoList");
+            $conn = $db->connection();
 
-        $result = $stmt->execute();
+            $stmt = $conn->prepare($sqlInsert);
 
-        $stmt->close();
-        $db->closeConnection();
+            if (!$stmt) {
+                throw new \Exception($this->twig->display($template,$data) . $conn->error);
+            }
 
-        if ($result) {
-            echo "Pomyślnie dodano rekord: " . $note;
-        } else {
-            echo "Wystąpił błąd podczas dodawania: " . $conn->error;
+            $stmt->bind_param("s", $note);
+
+            $result = $stmt->execute();
+
+            $stmt->close();
+            $db->closeConnection();
+
+            if ($result) {
+                $this->twig->display($template,$data);
+            } else {
+                $this->twig->display($template,$data) . $conn->error;
+            }
+            
+            return $result;
         }
-        
-        return $result;
     }
-}
 ?>

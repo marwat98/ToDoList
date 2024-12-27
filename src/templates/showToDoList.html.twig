@@ -3,19 +3,15 @@
         <table id="toDoList_table" class="todo_table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Zrobione</th>
                     <th>Notatka</th>
-                    <th>Usuń</th>
-                    <th>Data</th>
                 </tr>
             </thead>
             <tbody>
                 {% for row in data %}
                 <tr>
-                    <td>{{ row.id }}</td>
+                    <td><button class="delete-btn" data-id="{{ row.id }}">Zrobione</button></td>
                     <td>{{ row.note }}</td>
-                    <td><button class="delete-btn" data-id="{{ row.id }}">Usuń</button></td>
-                    <td>{{ row.date_time }}</td>
                 </tr>
                 {% else %}
                 <tr>

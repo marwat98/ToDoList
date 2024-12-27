@@ -1,17 +1,26 @@
 <?php 
-require_once('src/config.php');
-use ShowNotes\ShowContent;
+    require_once('config.php');
+    use ShowNotes\ShowContent;
 
-$showContent = new ShowContent();
-$data = $showContent->dataBaseContent();
+    try {
+        $sqlSelect = "SELECT note from addToDataBase";
+        $template = "message.html.twig";
 
-$twig->display('header.html.twig');
+        $showContent = new ShowContent($twig);
+        $data = $showContent->dataBaseContent($sqlSelect,$template);
 
-$twig->display('addToDo.html.twig');
+    } catch (Exception $e) {
+        $twig->display('message.html.twig',['message' => $e->getMessage()]);
+        exit();
+    }
 
-echo $twig->render('showToDoList.html.twig', ['data' => $data]);
+    $twig->display('header.html.twig');
 
-$twig->display('scripts.html.twig');
+    $twig->display('addToDo.html.twig');
 
-$twig->display('footer.html.twig');
+    echo $twig->render('showToDoList.html.twig', ['data' => $data]);
+
+    $twig->display('scripts.html.twig');
+
+    $twig->display('footer.html.twig');
 ?>
