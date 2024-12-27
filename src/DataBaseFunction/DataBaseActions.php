@@ -9,11 +9,10 @@
         } else {
             $note = $_POST['note'];
             $template = "message.html.twig";
-            $data = array('message'=> "Pomyślnie dodano: " .$note);
             $sqlInsertData = "INSERT INTO addToDataBase (note) VALUES (?)";
             
             $addToDataBase = new AddToDataBase($twig);
-            $addToDataBase->addNote($note,$template,$data,$sqlInsertData);
+            $addToDataBase->addNote($note,$template,$sqlInsertData);
         }
     }
 ?> 

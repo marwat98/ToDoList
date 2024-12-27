@@ -9,15 +9,17 @@
         public function __construct($twig){
             $this->twig = $twig;
         }
-        public function addNote(string $note, string $template,$data = array(),string $sqlInsert):bool{
+        public function addNote(string $note, string $template,string $sqlInsert):bool{
 
             $db = new DataBase("localhost","root","","toDoList");
             $conn = $db->connection();
+            if($conn-> connect_error){
+                $this->addMessage($template,"Połączenie z bazą danych nie powiodło się błąd: " . $conn->error,false);
+            }
 
             $stmt = $conn->prepare($sqlInsert);
-
             if (!$stmt) {
-                throw new \Exception($this->twig->display($template,$data) . $conn->error);
+                $this->addMessage($template,"Błąd: " . $stmt->error,false);
             }
 
             $stmt->bind_param("s", $note);
@@ -28,12 +30,19 @@
             $db->closeConnection();
 
             if ($result) {
-                $this->twig->display($template,$data);
+                $this->addMessage($template,"Pomyślnie dodano: " .$note,true);
             } else {
-                $this->twig->display($template,$data) . $conn->error;
+                $this->addMessage($template,"Dodanie notatki " .$note . " nie powiodło się",false);
             }
             
             return $result;
         }
+        private function addMessage(string $template,string $message,bool $errorException){
+            $this->twig->display($template,['message' => $message]);
+            if($errorException){
+                throw new \Exception($message);
+            }
+        }
+
     }
 ?>

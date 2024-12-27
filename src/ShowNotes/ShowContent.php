@@ -12,23 +12,30 @@ class ShowContent implements DataBaseInterface{
     }
     public function dataBaseContent(string $sqlSelect, string $template):array{
 
-        $data = array('message'=> "Błąd zapytania SQL: ");
-
         $db = new DataBase("localhost","root","","toDoList");
         $conn = $db->connection();
+        if ($conn->connect_error) {
+            $this->showMessageException($template, "Błąd połączenia: " . $conn->connect_error,CURLOPT_SSL_FALSESTART);
+        }
 
         $result = $conn->query($sqlSelect);
         if (!$result) {
-            throw new \Exception($this->twig->display($template,$data . $conn->error));
+           $this->showMessageException($template,"Błąd zapytania SQL: " . $conn->error,false);
         }
 
-        $data = [];
+        $content = [];
         while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
+            $content[] = $row;
         }
         
         $db->closeConnection();
-        return $data;
+        return $content;
+    }
+    private function showMessageException(string $template,string $message,bool $errorException):void{
+        $this->twig->display($template,['message'=> $message]);
+        if($errorException){
+            throw new \Exception($message);
+        }
     }
 }
 ?>
