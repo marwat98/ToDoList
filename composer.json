@@ -2,12 +2,16 @@
     "require": {
         "twig/twig": "^3.17"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5.2"
+    },
     "autoload": {
            "psr-4": {
                 "ToDoInterface\\": "src/ToDoInterface/",
                 "DataBaseConnection\\": "src/DataBaseConnection/",
                 "ShowNotes\\": "src/ShowNotes/",
-                "DataBaseFunction\\": "src/DataBaseFunction/"
+                "DataBaseFunction\\": "src/DataBaseFunction/",
+                "TestPHP\\": "testPHP/"
            }
     }
 }

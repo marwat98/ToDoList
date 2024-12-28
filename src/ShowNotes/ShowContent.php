@@ -15,7 +15,7 @@ class ShowContent implements DataBaseInterface{
         $db = new DataBase("localhost","root","","toDoList");
         $conn = $db->connection();
         if ($conn->connect_error) {
-            $this->showMessageException($template, "Błąd połączenia: " . $conn->connect_error,CURLOPT_SSL_FALSESTART);
+            $this->showMessageException($template, "Błąd połączenia: " . $conn->connect_error,false);
         }
 
         $result = $conn->query($sqlSelect);
@@ -33,7 +33,7 @@ class ShowContent implements DataBaseInterface{
     }
     private function showMessageException(string $template,string $message,bool $errorException):void{
         $this->twig->display($template,['message'=> $message]);
-        if($errorException){
+        if($errorException == false){
             throw new \Exception($message);
         }
     }

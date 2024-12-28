@@ -37,9 +37,9 @@
             
             return $result;
         }
-        private function addMessage(string $template,string $message,bool $errorException){
+        private function addMessage(string $template,string $message,bool $errorException):void{
             $this->twig->display($template,['message' => $message]);
-            if($errorException){
+            if($errorException == false){
                 throw new \Exception($message);
             }
         }
