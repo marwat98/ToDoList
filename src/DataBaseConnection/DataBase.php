@@ -7,6 +7,7 @@ class DataBase{
     private string $database;
     private ?\mysqli $conn = null;
 
+
     public function __construct(string $host, string $username, string $password, string $database){
         $this->host = $host;
         $this->username = $username;

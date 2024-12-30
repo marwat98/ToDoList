@@ -11,6 +11,7 @@
                 "DataBaseConnection\\": "src/DataBaseConnection/",
                 "ShowNotes\\": "src/ShowNotes/",
                 "DataBaseFunction\\": "src/DataBaseFunction/",
+                "MessageTwigFunction\\": "src/MessageTwigFunction",
                 "TestPHP\\": "testPHP/"
            }
     }

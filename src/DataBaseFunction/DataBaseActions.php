@@ -1,6 +1,5 @@
  <?php
     require_once(__DIR__ . '/../../vendor/autoload.php');
-    require_once(__DIR__ . '/../../config.php');
     use DataBaseFunction\AddToDataBase;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -11,7 +10,7 @@
             $template = "message.html.twig";
             $sqlInsertData = "INSERT INTO addToDataBase (note) VALUES (?)";
             
-            $addToDataBase = new AddToDataBase($twig);
+            $addToDataBase = new AddToDataBase();
             $addToDataBase->addNote($note,$template,$sqlInsertData);
         }
     }

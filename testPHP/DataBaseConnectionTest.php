@@ -12,10 +12,13 @@ class DataBaseConnectionTest extends TestCase{
         $password = "";
         $database = "toDoList";
     
-        // Tworzenie instancji obiektu
+        $this->assertIsString($host, "Host is not a string");
+        $this->assertIsString($username, "Username is not a string");
+        $this->assertIsString($password, "Password is not a string");
+        $this->assertIsString($database, "Database name is not a string");
+
         $db = new DataBase($host, $username, $password, $database);
-    
-        // Sprawdzanie typów argumentów (możesz dodać dodatkowe testy)
+
         $this->assertInstanceOf(DataBase::class, $db);
     }
 
