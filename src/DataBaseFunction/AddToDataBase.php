@@ -6,35 +6,38 @@
     use MessageTwigFunction\MessageHandler;
 
     class AddToDataBase implements AddNoteToDataBaseInterface{
-        public function addNote(string $note, string $template,string $sqlInsert):bool{
+        private $db;
+        private $message;
 
-            $message = new MessageHandler($twig);
+        public function __construct(DataBase $db, MessageHandler $message){
+            $this->db = $db;
+            $this->message = $message;
+        }
+        public function addNote(string $note, string $template, string $sqlInsert): bool{
 
-            $db = new DataBase("localhost","root","","toDoList");
-            $conn = $db->connection();
-            if($conn-> connect_error){
-                $message->showMessage($template,"Połączenie z bazą danych nie powiodło się błąd: " . $conn->error,false);
+            $conn = $this->db->connection();
+            if ($conn->connect_errno) {
+                $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
             }
 
             $stmt = $conn->prepare($sqlInsert);
             if (!$stmt) {
-                $message->showMessage($template,"Błąd: " . $stmt->error,false);
+                $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
             }
 
             $stmt->bind_param("s", $note);
 
             $result = $stmt->execute();
-
-            $stmt->close();
-            $db->closeConnection();
-
             if ($result) {
-                $message->showMessage($template,"Pomyślnie dodano: " .$note,true);
+                $this->message->showMessage($template, "Pomyślnie dodano: " . $note, true);
             } else {
-                $message->showMessage($template,"Dodanie notatki " .$note . " nie powiodło się",false);
+                $this->message->showMessage($template, "Dodanie notatki nie powiodło się", false);
             }
-            
+
+            $stmt->close(); 
+            $this->db->closeConnection();
+
             return $result;
-        }
     }
+}
 ?>

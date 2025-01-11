@@ -43,7 +43,7 @@ class DataBaseConnectionTest extends TestCase{
                              ->onlyMethods(['connection'])
                              ->getMock();
         $mockDatabase->method('connection')->willReturn($mockMysqli); 
-        
+
         // Testing 
         $conn = $mockDatabase->connection();
         $this->assertInstanceOf(\mysqli::class, $conn);
