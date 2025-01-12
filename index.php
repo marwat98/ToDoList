@@ -3,7 +3,7 @@
     use ShowNotes\ShowContent;
 
     try {
-        $sqlSelect = "SELECT note from addToDataBase";
+        $sqlSelect = "SELECT note , count from addToDataBase";
         $template = "message.html.twig";
 
         $showContent = new ShowContent($twig);
@@ -16,9 +16,7 @@
 
     $twig->display('header.html.twig');
 
-    $twig->display('addToDo.html.twig');
-
-    echo $twig->render('showToDoList.html.twig', ['data' => $data]);
+    echo $twig->render('addToDo.html.twig', ['data' => $data]);
 
     $twig->display('scripts.html.twig');
 
