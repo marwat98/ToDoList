@@ -15,8 +15,9 @@
                 <tbody id="list-container">
                     {% for row in data %}
                     <tr>
-                        <td><span class="list-item">{{ row.note }}</span></td>
-                        <td><span class="list-item">{{ row.count }}</span></td>
+                        <td class ="checked"><span class="list-item">{{ row.note }}</span></td>
+                        <td><span>{{ row.count }}</span></td>
+                        <td><span class="delete">&times;</span></td>
                     </tr>
                     {% else %}
                     <tr>

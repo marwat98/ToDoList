@@ -52,6 +52,7 @@ img{
  width: 450px;
 }
 .addText{
+   font-size: 15px;
    flex:1;
    border:none;
    outline:none;
@@ -85,25 +86,46 @@ table {
     cursor: pointer;
     position: relative;
 }
-
 td {
     padding: 12px 8px 12px 75px;
     text-align: left;
     position: relative; 
 }
-
 .list-item::before {
     content: '';
-    background-image: url(src/images/unchecked.png);
+    background-image: url('../images/unchecked.png');
     position: absolute;
     height: 28px;
     width: 28px;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    top: 12px;
-    left: 8px;
+    top: 8px;
+    left: 24px;
 }
+.checked{
+    color:#555;
+    text-decoration: line-through;
+}
+.checked::before{
+    background-image: url('../images/checked.png');
+}
+.delete{
+    position: absolute;
+    text-align: center;
+    right: 20px;
+    top: 2px;
+    line-height: 40px;
+    color:#555;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.delete:hover{
+    background:#edeef0;
+}
+
 
 
 
