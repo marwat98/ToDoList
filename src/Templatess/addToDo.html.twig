@@ -11,21 +11,19 @@
             </form>
         </div>
         <div class="display_input">
-            <table>
-                <tbody id="list-container">
-                    {% for row in data %}
+            <ul id="list-container">
+                {% for row in data %}
+                <table>
                     <tr>
-                        <td class ="checked"><span class="list-item">{{ row.note }}</span></td>
-                        <td><span>{{ row.count }}</span></td>
-                        <td><span class="delete">&times;</span></td>
+                        <td><li class="checked">{{ row.note }}</li></td>
+                        <td>{{ row.count }}</td>
+                        <td class="delete" id="delete">&times;</td>
                     </tr>
                     {% else %}
-                    <tr>
-                        <td colspan="2">Brak notatek</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    <td><li>Brak notatek</li></td>
+                {% endfor %}
+                </table>
+            </ul>
         </div>
     </div>
 </section>
