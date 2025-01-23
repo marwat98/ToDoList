@@ -76,14 +76,12 @@ button:hover{
     transform: scale(1.1);
 }
 ul li {
-    text-decoration: none; /* Brak przekreślenia */
-    color: black; /* Czarny tekst */
-    list-style: none; /* Usuń punktory listy */
+    list-style: none; 
     font-size: 17px;
-    padding: 12px 8px 12px 75px; /* Wyrównanie ikony i tekstu */
-    user-select: none; /* Zablokowanie zaznaczania tekstu */
-    cursor: pointer; /* Wskaźnik na kursorze */
-    position: relative; /* Potrzebne do umieszczenia ::before */
+    padding: 12px 8px 12px 75px; 
+    user-select: none; 
+    cursor: pointer; 
+    position: relative; 
 }
 ul li::before{
     content:'';

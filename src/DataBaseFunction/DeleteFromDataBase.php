@@ -33,10 +33,11 @@
                 $this->message->showMessage($template, "Usunięcie notatki nie powiodło się", false);
             }
 
+            return $result;
+
             $stmt->close(); 
             $this->db->closeConnection();
 
-            return $result;
         }
     }
 

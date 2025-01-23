@@ -87,8 +87,5 @@ class AddToDataBaseTest extends TestCase{
         $this->assertTrue($result);
     } 
     
-    public function testFunctionAddNoteOrReturnFalse():void{
-        
-    }
 }
 ?>

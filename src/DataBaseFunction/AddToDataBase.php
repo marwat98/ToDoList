@@ -30,14 +30,15 @@
             $result = $stmt->execute();
             if ($result) {
                 $this->message->showMessage($template, "Pomyślnie dodano: " . $note, true);
+                
             } else {
                 $this->message->showMessage($template, "Dodanie notatki nie powiodło się", false);
             }
+            
+            return $result;
 
             $stmt->close(); 
             $this->db->closeConnection();
-
-            return $result;
     }
 }
 ?>
