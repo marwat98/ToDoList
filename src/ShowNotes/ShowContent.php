@@ -3,7 +3,7 @@ namespace ShowNotes;
 require_once(__DIR__ . '/../../vendor/autoload.php');
 require_once(__DIR__ . '/../../config.php');
 use DataBaseConnection\DataBase;
-use ToDoInterface\DataBaseInterface;
+use Interfaces\DataBaseInterface;
 
 class ShowContent implements DataBaseInterface{
     private $twig;

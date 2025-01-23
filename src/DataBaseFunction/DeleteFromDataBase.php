@@ -1,11 +1,11 @@
 <?php
     namespace DataBaseFunction;
-    require_once(__DIR__ . '/../../config.php');
     use DataBaseConnection\DataBase;
-    use Interfaces\AddNoteToDataBaseInterface;
+    use Interfaces\DeleteNoteToDataBaseInterface;
     use MessageTwigFunction\MessageHandler;
+    require_once(__DIR__ . '/../../config.php');
 
-    class AddToDataBase implements AddNoteToDataBaseInterface{
+    class DeleteFromDataBase implements DeleteNoteToDataBaseInterface{
         private $db;
         private $message;
 
@@ -13,31 +13,32 @@
             $this->db = $db;
             $this->message = $message;
         }
-        public function addNote(string $note, string $template, string $sqlInsert): bool{
+        public function deleteNote(int $id, string $template, string $sqlDelete):bool{
 
             $conn = $this->db->connection();
             if ($conn->connect_errno) {
                 $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
             }
-
-            $stmt = $conn->prepare($sqlInsert);
+            $stmt = $conn->prepare($sqlDelete);
             if (!$stmt) {
                 $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
             }
 
-            $stmt->bind_param("s", $note);
+            $stmt->bind_param("i", $id);
 
             $result = $stmt->execute();
             if ($result) {
-                $this->message->showMessage($template, "Pomyślnie dodano: " . $note, true);
+                $this->message->showMessage($template, "Pomyślnie usunięto: " . $id, true);
             } else {
-                $this->message->showMessage($template, "Dodanie notatki nie powiodło się", false);
+                $this->message->showMessage($template, "Usunięcie notatki nie powiodło się", false);
             }
 
             $stmt->close(); 
             $this->db->closeConnection();
 
             return $result;
+        }
     }
-}
+
+ 
 ?>

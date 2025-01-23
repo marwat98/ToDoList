@@ -60,7 +60,7 @@ img{
    width: 200px;
 
 }
-button{
+.add{
     border:none;
     outline:none;
     padding: 16px 50px;
@@ -76,12 +76,14 @@ button:hover{
     transform: scale(1.1);
 }
 ul li {
-    list-style:none;
+    text-decoration: none; /* Brak przekreślenia */
+    color: black; /* Czarny tekst */
+    list-style: none; /* Usuń punktory listy */
     font-size: 17px;
-    padding: 12px 8px 12px 75px;
-    user-select: none;
-    cursor: pointer;
-    position: relative;
+    padding: 12px 8px 12px 75px; /* Wyrównanie ikony i tekstu */
+    user-select: none; /* Zablokowanie zaznaczania tekstu */
+    cursor: pointer; /* Wskaźnik na kursorze */
+    position: relative; /* Potrzebne do umieszczenia ::before */
 }
 ul li::before{
     content:'';
@@ -95,8 +97,7 @@ ul li::before{
     top: 6px;
     left: 23px;
 }
-ul li.checked,
-.count{
+ul li.checked{
     color: #555;
     text-decoration: line-through;
 }
@@ -112,30 +113,30 @@ td {
     text-align: left; 
 }
 td:first-child {
-    width: 55%; 
+    width: 2%; 
 }
 
 td:nth-child(2){
-    width: 15%;
-}
-td:nth-child(3) {
-    width: 5%; 
+    width: 70%;
 }
 .delete{
     position: relative;
-    text-align: center;
-    right: 13px;
-    line-height: 20px;
-    color:#555;
-    font-size: 22px;
-    width: 40px;
-    height: 40px;
+    left: 55%;
+    border:none;
+    outline:none;
+    width: 30px;
+    height: 30px;
+    background: #6940ae;
+    color: #fff;
+    font-size: 16px;
     border-radius: 50%;
+    cursor:pointer;
+    transition: transform 0.3s ease;
+    
 }
-.delete:hover{
-    background:#edeef0;
+.show_id{
+    color:white;
 }
-
 
 
 

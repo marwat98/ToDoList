@@ -7,7 +7,7 @@
         <div class="todolist_action">
             <form method ="POST" action="src/DataBaseFunction/DataBaseActions.php">
                 <input class="addText" type="text" id="note" name="note" placeholder="Dodaj tekst" required>
-                <button id="add" name="add" type="submit" class="add">Dodaj</button>
+                <button id="add" name="press" value="addNote" type="submit" class="add">Dodaj</button>
             </form>
         </div>
         <div class="display_input">
@@ -15,14 +15,17 @@
                 {% for row in data %}
                 <table>
                     <tr>
-                        <td><li class="checked">{{ row.note }}</li></td>
-                        <td>{{ row.count }}</td>
-                        <td class="delete" id="delete">&times;</td>
+                        <td class="show_id">{{ row.id }}</td>
+                        <td><li>{{ row.note }}</li></td>
+                        <form method="POST" action="src/DataBaseFunction/DataBaseActions.php">
+                            <input type="hidden" name="id" value="{{ row.id }}">
+                            <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete">&times;</button></td>
+                        </form>
                     </tr>
                     {% else %}
-                    <td><li>Brak notatek</li></td>
-                {% endfor %}
+                    <td>Brak notatek</td>
                 </table>
+                {% endfor %}
             </ul>
         </div>
     </div>
