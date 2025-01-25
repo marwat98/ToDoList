@@ -73,7 +73,7 @@ class AddToDataBaseTest extends TestCase{
 
         // Mock MessageHandler
         $mockMessage = $this->createMock(MessageHandler::class);
-        $mockMessage->expects($this->once()) // Powinno być wywołane tylko raz
+        $mockMessage->expects($this->once()) 
                         ->method('showMessage')
                         ->with(
                      $this->equalTo('message.html.twig'),
