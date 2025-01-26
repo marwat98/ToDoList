@@ -5,9 +5,9 @@
             <img src="src/images/list.png">
         </div>
         <div class="todolist_action">
-            <form method ="POST" action="src/DataBaseFunction/DataBaseActions.php">
+            <form id="addToDataBase">
                 <input class="addText" type="text" id="note" name="note" placeholder="Dodaj tekst" required>
-                <button id="add" name="press" value="addNote" type="submit" class="add">Dodaj</button>
+                <button type="submit" name="press" value="addNote" id="add" class="add" onclick="addDeleteNoteAjax(event,'addToDataBase');">Dodaj</button>
             </form>
         </div>
         <div class="display_input">
@@ -17,9 +17,9 @@
                     <tr>
                         <td class="show_id">{{ row.id }}</td>
                         <td><li>{{ row.note }}</li></td>
-                        <form method="POST" action="src/DataBaseFunction/DataBaseActions.php">
+                        <form id="deleteWithDataBase">
                             <input type="hidden" name="id" value="{{ row.id }}">
-                            <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete">&times;</button></td>
+                            <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="addDeleteNoteAjax(event,'deleteWithDataBase');">&times;</button></td>
                         </form>
                     </tr>
                     {% else %}
@@ -30,3 +30,4 @@
         </div>
     </div>
 </section>
+<script src="src/js/script.js"></script>

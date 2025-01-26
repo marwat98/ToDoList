@@ -28,7 +28,7 @@
 
             $result = $stmt->execute();
             if ($result) {
-                $this->message->showMessage($template, "Pomyślnie usunięto: " . $id, true);
+                $this->message->showMessage($template, "Pomyślnie usunięto", true);
             } else {
                 $this->message->showMessage($template, "Usunięcie notatki nie powiodło się", false);
             }
