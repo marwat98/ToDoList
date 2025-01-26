@@ -21,4 +21,5 @@
     $twig->display('scripts.html.twig');
 
     $twig->display('footer.html.twig');
+    
 ?>
