@@ -10,13 +10,13 @@ body{
 }
 .container{
     position: relative;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-left: 37%;
     width: 500px;
-    height: 600px;
+    height: 200px;
     background-color: #fff;
     border: 1px solid black;
-    border-radius: 40px;
+    border-radius: 10px;
 }
 .todolist{
     display: flex;
@@ -33,52 +33,75 @@ body{
     font-size: 25px;
     font-weight: bold;
     color: #3d387b;
+    margin-bottom: 5%;
 }
 img{
     margin-top: -1.3%;
     width: 40px;
     height: 40px;
 }
-.todolist_action{
- display: flex;
- align-items: center;
- justify-content: space-between;
- margin-top: 10%;
- background: #edeef0;
- border-radius: 30px;
- padding-left: 55px;
- margin-bottom: 25px;
- margin-left: 25px;
- width: 450px;
+.list_inputs table{
+    display: flex;
+    width: 350px;
 }
-.addText{
-   font-size: 15px;
-   flex:1;
-   border:none;
-   outline:none;
-   background: transparent;
-   width: 200px;
-
+.list_inputs th{
+    font-size: 12px;
+    font-style: italic;
+    color: #3d387b;
+}
+.list_inputs td{
+    position: relative;
+    left: 6%;
+    width: 150px;
+    height: 40px;
+}
+.list_inputs select{
+    color: #555;
+    border: none;
+    background-color: #fff;
+    border-bottom: 2px solid #3d387b;
+    width: 125px;
+    height: 30px;
+}
+.list_inputs input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #3d387b;
+    background-color: #fff;
 }
 .add{
     border:none;
     outline:none;
-    padding: 16px 50px;
+    padding: 10px 30px;
     background: #6940ae;
     color: #fff;
     font-size: 16px;
-    border-radius: 40px;
+    border-radius: 10px;
     cursor:pointer;
     transition: transform 0.3s ease;
-    margin-left: 47px;
+    margin-top: 20px;
+    margin-left: 25px;
+    width: 450px;
 }
 button:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
+}
+.table_display{
+    margin-top: 1%;
+    margin-left: 37%;
+    width: 500px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 10px;
 }
 ul li {
     list-style: none; 
     font-size: 17px;
-    padding: 12px 8px 12px 75px; 
+    padding: 12px 8px 12px 65px; 
     user-select: none; 
     cursor: pointer; 
     position: relative; 
@@ -93,7 +116,7 @@ ul li::before{
     background-size: cover;
     background-position: center;
     top: 6px;
-    left: 23px;
+    left: 16px;
 }
 ul li.checked{
     color: #555;
@@ -102,24 +125,24 @@ ul li.checked{
 ul li.checked::before{
     background-image: url('../images/checked.png');
 }
-table {
+.table_display table {
     width: 100%; 
     border-collapse: collapse; 
 }
 
-td {
+.table_display td {
     text-align: left; 
 }
-td:first-child {
+.table_display td:first-child {
     width: 2%; 
 }
 
-td:nth-child(2){
+.table_display td:nth-child(2){
     width: 70%;
 }
 .delete{
     position: relative;
-    left: 55%;
+    left: 65%;
     border:none;
     outline:none;
     width: 30px;

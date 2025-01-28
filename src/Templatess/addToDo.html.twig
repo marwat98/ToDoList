@@ -1,19 +1,40 @@
 <section>
     <div class="container">
         <div class="todolist">
-            <h2>To-Do List</h2>
+            <h2>Shopp-list</h2>
             <img src="src/images/list.png">
         </div>
-        <div class="todolist_action">
+        <div class="toDoList_action">
             <form id="addToDataBase">
-                <input class="addText" type="text" id="note" name="note" placeholder="Dodaj tekst" required>
+                    <table class="list_inputs">
+                        <th>Nazwa produktu</th>
+                        <th>Rodzaj</th>
+                        <th>Ilość</th>
+                        <tr>
+                            <td><input class="addText" type="text" id="note" name="note" placeholder="Dodaj tekst" required></td>
+                            <td>
+                                <select id="categories" name="categories">
+                                    <option value="bread">Pieczywo</option>
+                                    <option value="fruits">Owoce</option>
+                                    <option value="vegetables">Warzywa</option>
+                                    <option value="sweats">Słodycze</option>
+                                    <option value="drinks">Napoje</option>
+                                    <option value="meat">Mięso</option>
+                                    <option value="dairy">Produkty mleczne</option>
+                                    <option value="cleaning">Środki czystości</option>
+                                </select> 
+                            </td>
+                            <td><input class="addNumber" type="text" placeholder="Ilość sztuk" required></td>
+                        </tr>
+                    </table>
                 <button type="submit" name="press" value="addNote" id="add" class="add" onclick="addDeleteNoteAjax(event,'addToDataBase');">Dodaj</button>
             </form>
         </div>
-        <div class="display_input">
+    </div>
+        <div class="display">
             <ul id="list-container">
                 {% for row in data %}
-                <table>
+                <table class="table_display">
                     <tr>
                         <td class="show_id">{{ row.id }}</td>
                         <td><li>{{ row.note }}</li></td>
@@ -28,6 +49,5 @@
                 {% endfor %}
             </ul>
         </div>
-    </div>
 </section>
 <script src="src/js/script.js"></script>
