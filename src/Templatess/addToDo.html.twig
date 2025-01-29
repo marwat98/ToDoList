@@ -11,20 +11,20 @@
                         <th>Rodzaj</th>
                         <th>Ilość</th>
                         <tr>
-                            <td><input class="addText" type="text" id="note" name="note" placeholder="Dodaj tekst" required></td>
+                            <td><input class="addText" type="text" id="note" name="note" placeholder="Napisz" required></td>
                             <td>
                                 <select id="categories" name="categories">
-                                    <option value="bread">Pieczywo</option>
-                                    <option value="fruits">Owoce</option>
-                                    <option value="vegetables">Warzywa</option>
-                                    <option value="sweats">Słodycze</option>
-                                    <option value="drinks">Napoje</option>
-                                    <option value="meat">Mięso</option>
-                                    <option value="dairy">Produkty mleczne</option>
-                                    <option value="cleaning">Środki czystości</option>
+                                    <option value="Pieczywo">Pieczywo</option>
+                                    <option value="Owoce">Owoce</option>
+                                    <option value="Warzywa">Warzywa</option>
+                                    <option value="Słodycze">Słodycze</option>
+                                    <option value="Napoje">Napoje</option>
+                                    <option value="Mięso">Mięso</option>
+                                    <option value="Produkty mleczne">Produkty mleczne</option>
+                                    <option value="Środki czystości">Środki czystości</option>
                                 </select> 
                             </td>
-                            <td><input class="addNumber" type="text" placeholder="Ilość sztuk" required></td>
+                            <td><input class="pieces" id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
                         </tr>
                     </table>
                 <button type="submit" name="press" value="addNote" id="add" class="add" onclick="addDeleteNoteAjax(event,'addToDataBase');">Dodaj</button>
@@ -37,14 +37,14 @@
                 <table class="table_display">
                     <tr>
                         <td class="show_id">{{ row.id }}</td>
-                        <td><li>{{ row.note }}</li></td>
+                        <td class="row_note"><li class="note_item">{{ row.note }}</li></td>
+                        <td class="row_category"><li>{{ row.category }}</li></td>
+                        <td class="row_pieces"><li>{{ row.pieces }}</li></td>
                         <form id="deleteWithDataBase">
                             <input type="hidden" name="id" value="{{ row.id }}">
                             <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="addDeleteNoteAjax(event,'deleteWithDataBase');">&times;</button></td>
                         </form>
                     </tr>
-                    {% else %}
-                    <td>Brak notatek</td>
                 </table>
                 {% endfor %}
             </ul>

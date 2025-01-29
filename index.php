@@ -3,7 +3,7 @@
     use ShowNotes\ShowContent;
 
     try {
-        $sqlSelect = "SELECT id,note FROM addToDataBase";
+        $sqlSelect = "SELECT id,note,category,pieces FROM addToDataBase";
         $template = "message.html.twig";
 
         $showContent = new ShowContent($twig);

@@ -106,7 +106,7 @@ ul li {
     cursor: pointer; 
     position: relative; 
 }
-ul li::before{
+.row_note .note_item::before{
     content:'';
     position: absolute;
     height: 28px;
@@ -118,11 +118,11 @@ ul li::before{
     top: 6px;
     left: 16px;
 }
-ul li.checked{
+.row_note .note_item.checked{
     color: #555;
     text-decoration: line-through;
 }
-ul li.checked::before{
+.row_note .note_item.checked::before{
     background-image: url('../images/checked.png');
 }
 .table_display table {
@@ -134,15 +134,15 @@ ul li.checked::before{
     text-align: left; 
 }
 .table_display td:first-child {
-    width: 2%; 
+    width: 0%; 
 }
 
 .table_display td:nth-child(2){
-    width: 70%;
+    width: 40%;
 }
 .delete{
     position: relative;
-    left: 65%;
+    left: 15%;
     border:none;
     outline:none;
     width: 30px;
@@ -158,6 +158,15 @@ ul li.checked::before{
 .show_id{
     color:white;
 }
+.row_category li,
+.row_pieces li{
+    font-size: 12px;
+    font-style: italic;
+    color: #555;
+    width: 10px;
+}
+
+
 
 
 

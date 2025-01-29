@@ -13,7 +13,7 @@
             $this->db = $db;
             $this->message = $message;
         }
-        public function addNote(string $note, string $template, string $sqlInsert): bool{
+        public function addNote(string $note, string $categories, int $pieces, string $template, string $sqlInsert): bool{
 
             $conn = $this->db->connection();
             if ($conn->connect_errno) {
@@ -25,7 +25,7 @@
                 $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
             }
 
-            $stmt->bind_param("s", $note);
+            $stmt->bind_param("ssi", $note,$categories,$pieces);
 
             $result = $stmt->execute();
             if ($result) {
