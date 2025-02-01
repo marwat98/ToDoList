@@ -1,19 +1,12 @@
 <?php
     namespace DataBaseFunction;
-    require_once(__DIR__ . '/../../config.php');
-    use DataBaseConnection\DataBase;
-    use Interfaces\AddNoteToDataBaseInterface;
-    use MessageTwigFunction\MessageHandler;
+    require_once ('../../config.php');
+    use AbstractClasses\AbstractClassAddEditNote;
 
-    class AddToDataBase implements AddNoteToDataBaseInterface{
-        private $db;
-        private $message;
 
-        public function __construct(DataBase $db, MessageHandler $message){
-            $this->db = $db;
-            $this->message = $message;
-        }
-        public function addNote(string $note, string $categories, int $pieces, string $template, string $sqlInsert): bool{
+    class AddEditToDataBase extends AbstractClassAddEditNote{
+       
+        public function addEditNote(?int $id, string $note, string $categories, int $pieces, string $template, string $sqlInsert): bool{
 
             $conn = $this->db->connection();
             if ($conn->connect_errno) {
@@ -24,8 +17,12 @@
             if (!$stmt) {
                 $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
             }
+            if($id === null){
+                $stmt->bind_param("ssi",$note,$categories,$pieces);
+            } else {
+                $stmt->bind_param("issi",$id,$note,$categories,$pieces);
+            }
 
-            $stmt->bind_param("ssi", $note,$categories,$pieces);
 
             $result = $stmt->execute();
             if ($result) {

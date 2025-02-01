@@ -1,7 +1,6 @@
  <?php
-    require_once(__DIR__ . '/../../vendor/autoload.php');
-    require_once(__DIR__ . '/../../config.php');
-    use DataBaseFunction\AddToDataBase;
+    require_once ('../../config.php');
+    use DataBaseFunction\AddEditToDataBase;
     use DataBaseFunction\DeleteFromDataBase;
     use MessageTwigFunction\MessageHandler;
     use DataBaseConnection\DataBase;
@@ -20,6 +19,7 @@
         $note = $_POST['note'];
         $categories = $_POST['categories'];
         $pieces = (int)$_POST['pieces'];
+        $id = (int)$_POST['id'];
 
         if (!isset($_POST['press']) || $_POST['press'] === "" ||
             !isset($_POST['note']) || $_POST['note'] === "" || 
@@ -31,12 +31,25 @@
                     // Action which addition notes to data base
                     case "addNote":
                         try{
-                            if(empty($note)){
-                                throw new Exception("User don't write note");
+                            if(empty($note) && empty($categories) && empty($pieces)){
+                                throw new Exception("Użytkownik nie wpisał notatki , nie wybrał kategori , nie wpisał ilości");
                             } else {
-                                $sqlInsertData = "INSERT INTO addToDataBase (note,category,pieces) VALUES (?,?,?)";
-                                $addToDataBase = new AddToDataBase($db,$message);
-                                $addToDataBase->addNote($note,$categories,$pieces,$template,$sqlInsertData);
+                                $sqlInsertData = "INSERT INTO addtodatabase (note,category,pieces) VALUES (?,?,?)";
+                                $addToDataBase = new AddEditToDataBase($db,$message);
+                                $addToDataBase->addEditNote($id,$note,$categories,$pieces,$template,$sqlInsertData);
+                            }
+                        } catch (Exception $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+                    break;
+                    case "editNote":
+                        try{
+                            if(empty($note) && empty($categories) && empty($pieces)){
+                                throw new Exception("Użytkownik nie wpisał notatki , nie wybrał kategori , nie wpisał ilości");
+                            } else {
+                                $sqlInsertData = "UPDATE addtodatabase SET note = ? , category = ? , pieces = ? WHERE id = ?";
+                                $editNote = new AddEditToDataBase($db,$message);
+                                $editNote->addEditNote($id,$note,$categories,$pieces,$template,$sqlInsertData);
                             }
                         } catch (Exception $e) {
                             echo "Error: " . $e->getMessage();
@@ -45,8 +58,7 @@
                     // Action which deleting notes with data base
                     case "deleteNote":
                         try{
-                            $id = (int)$_POST['id'];
-                            $sqlDelete = "DELETE FROM addToDataBase WHERE id = ?";
+                            $sqlDelete = "DELETE FROM addtodatabase WHERE id = ?";
                             $deleteFromDataBase = new DeleteFromDataBase($db,$message);
                             $deleteFromDataBase->deleteNote($id,$template,$sqlDelete);
                         }

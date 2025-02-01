@@ -11,7 +11,7 @@
                         <th>Rodzaj</th>
                         <th>Ilość</th>
                         <tr>
-                            <td><input class="addText" type="text" id="note" name="note" placeholder="Napisz" required></td>
+                            <td><input class="addText" type="text" id="note" name="note" placeholder="Napisz produkt" required></td>
                             <td>
                                 <select id="categories" name="categories">
                                     <option value="Pieczywo">Pieczywo</option>
@@ -40,6 +40,10 @@
                         <td class="row_note"><li class="note_item">{{ row.note }}</li></td>
                         <td class="row_category"><li>{{ row.category }}</li></td>
                         <td class="row_pieces"><li>{{ row.pieces }}</li></td>
+                        <form id="editRow">
+                            <input type="hidden" name="id" value="{{ row.id }}">
+                            <td><button type="submit" id="edit" name="press" value="edit" class="edit" onclick="addDeleteNoteAjax(event,'editRow');"><ion-icon name="create-outline"></ion-icon></button></td>
+                        </form>
                         <form id="deleteWithDataBase">
                             <input type="hidden" name="id" value="{{ row.id }}">
                             <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="addDeleteNoteAjax(event,'deleteWithDataBase');">&times;</button></td>
@@ -50,4 +54,4 @@
             </ul>
         </div>
 </section>
-<script src="src/js/script.js"></script>
+{% include "scripts.html.twig" %}

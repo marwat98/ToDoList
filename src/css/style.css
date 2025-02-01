@@ -138,9 +138,13 @@ ul li {
 }
 
 .table_display td:nth-child(2){
-    width: 40%;
+    width: 30%;
 }
-.delete{
+.delete,
+.edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     left: 15%;
     border:none;
@@ -153,7 +157,16 @@ ul li {
     border-radius: 50%;
     cursor:pointer;
     transition: transform 0.3s ease;
-    
+}
+.edit{
+    background: white;
+    border:#6940ae;
+    color: #6940ae;
+}
+ion-icon{
+    margin-bottom: 3%;
+    width: 28px;
+    height: 28px;
 }
 .show_id{
     color:white;

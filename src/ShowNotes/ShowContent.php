@@ -1,7 +1,6 @@
 <?php 
 namespace ShowNotes;
-require_once(__DIR__ . '/../../vendor/autoload.php');
-require_once(__DIR__ . '/../../config.php');
+require_once ('config.php');
 use DataBaseConnection\DataBase;
 use Interfaces\DataBaseInterface;
 
@@ -13,7 +12,7 @@ class ShowContent implements DataBaseInterface{
     }
     public function dataBaseContent(string $sqlSelect, string $template):array{
 
-        $db = new DataBase("localhost","root","","toDoList");
+        $db = new DataBase("localhost","root","","todolist");
         $conn = $db->connection();
         if ($conn->connect_error) {
             $this->showMessageException($template, "Błąd połączenia: " . $conn->connect_error,false);

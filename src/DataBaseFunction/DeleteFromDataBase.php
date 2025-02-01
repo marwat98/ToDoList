@@ -3,7 +3,7 @@
     use DataBaseConnection\DataBase;
     use Interfaces\DeleteNoteToDataBaseInterface;
     use MessageTwigFunction\MessageHandler;
-    require_once(__DIR__ . '/../../config.php');
+    require_once ('../../config.php');
 
     class DeleteFromDataBase implements DeleteNoteToDataBaseInterface{
         private $db;
