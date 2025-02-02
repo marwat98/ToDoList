@@ -40,10 +40,13 @@
                         <td class="row_note"><li class="note_item">{{ row.note }}</li></td>
                         <td class="row_category"><li>{{ row.category }}</li></td>
                         <td class="row_pieces"><li>{{ row.pieces }}</li></td>
-                        <form id="editRow">
-                            <input type="hidden" name="id" value="{{ row.id }}">
-                            <td><button type="submit" id="edit" name="press" value="edit" class="edit" onclick="addDeleteNoteAjax(event,'editRow');"><ion-icon name="create-outline"></ion-icon></button></td>
-                        </form>
+                        <td>
+                            <button class="editButton">
+                                <a class="edit_folder_modal">
+                                    <ion-icon name="create-outline"></ion-icon>
+                                </a>
+                            </button>
+                        </td>
                         <form id="deleteWithDataBase">
                             <input type="hidden" name="id" value="{{ row.id }}">
                             <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="addDeleteNoteAjax(event,'deleteWithDataBase');">&times;</button></td>
@@ -54,4 +57,5 @@
             </ul>
         </div>
 </section>
+{% include "modal.html.twig" %}
 {% include "scripts.html.twig" %}

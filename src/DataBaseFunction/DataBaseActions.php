@@ -5,8 +5,8 @@
     use MessageTwigFunction\MessageHandler;
     use DataBaseConnection\DataBase;
 
-    error_reporting(E_ALL);  
-    ini_set('display_errors', 1);  
+    // error_reporting(E_ALL);  
+    // ini_set('display_errors', 1);  
 
 
     $db = new DataBase("localhost","root","","toDoList");
@@ -19,7 +19,6 @@
         $note = $_POST['note'];
         $categories = $_POST['categories'];
         $pieces = (int)$_POST['pieces'];
-        $id = (int)$_POST['id'];
 
         if (!isset($_POST['press']) || $_POST['press'] === "" ||
             !isset($_POST['note']) || $_POST['note'] === "" || 
@@ -36,7 +35,7 @@
                             } else {
                                 $sqlInsertData = "INSERT INTO addtodatabase (note,category,pieces) VALUES (?,?,?)";
                                 $addToDataBase = new AddEditToDataBase($db,$message);
-                                $addToDataBase->addEditNote($id,$note,$categories,$pieces,$template,$sqlInsertData);
+                                $addToDataBase->addEditNote(null,$note,$categories,$pieces,$template,$sqlInsertData);
                             }
                         } catch (Exception $e) {
                             echo "Error: " . $e->getMessage();
@@ -58,6 +57,7 @@
                     // Action which deleting notes with data base
                     case "deleteNote":
                         try{
+                            $id = (int)$_POST['id'];
                             $sqlDelete = "DELETE FROM addtodatabase WHERE id = ?";
                             $deleteFromDataBase = new DeleteFromDataBase($db,$message);
                             $deleteFromDataBase->deleteNote($id,$template,$sqlDelete);

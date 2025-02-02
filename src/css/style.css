@@ -11,7 +11,7 @@ body{
 .container{
     position: relative;
     margin-top: 3%;
-    margin-left: 37%;
+    margin-left: 40%;
     width: 500px;
     height: 200px;
     background-color: #fff;
@@ -92,7 +92,7 @@ button:hover{
 }
 .table_display{
     margin-top: 1%;
-    margin-left: 37%;
+    margin-left: 40%;
     width: 500px;
     height: 50px;
     background-color: #fff;
@@ -141,7 +141,7 @@ ul li {
     width: 30%;
 }
 .delete,
-.edit{
+.editButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,7 +158,7 @@ ul li {
     cursor:pointer;
     transition: transform 0.3s ease;
 }
-.edit{
+.editButton{
     background: white;
     border:#6940ae;
     color: #6940ae;
@@ -178,6 +178,103 @@ ion-icon{
     color: #555;
     width: 10px;
 }
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal__container__edit{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+.modal__container__edit.active{
+    opacity: 1;
+    pointer-events: auto;
+    transition: .4s ease;
+    z-index: 3;
+}
+.modal__container__addFile
+.modal__container__edit,
+.modal__inputs,
+.modal__inputs__edit{
+    width: 500px;
+    height: 300px;
+    background-color: #f0eff5;
+    border-radius: 6px;
+    transform: scale(0);
+}
+.modal__container__edit.active,
+.modal__inputs,
+.modal__inputs__edit{
+    transform: scale(1);
+    transition: .4s ease;
+    transition-delay: .25s;
+}
+.modal__inputs,
+.modal__inputs__edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+}
+.modal__inputs h1 ,
+.modal__inputs__edit h1{
+    position: absolute;
+    font-size: 30px;
+    top: 15%;
+    left: 30%;
+    margin-bottom: 10%;
+}
+.modal__inputs
+.modal__inputs__edit,
+.close_modal_edit{
+    position: absolute;
+    top: 1%;
+    left: 2%;
+    cursor: pointer;
+}
+.modal__inputs input{
+    font-size: 15px;
+    width: 300px;
+    padding: 10px;
+    border-bottom: 2px solid #3d387b;
+    background-color: #fff;
+}
+
+.modal__inputs__edit input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+.modal__inputs button,
+.modal__inputs__edit button{
+    position: absolute;
+    top: 70%;
+    left: 16%;
+    height: 30px;
+    width: 300px;
+    background-color: #292929;
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 
 
 

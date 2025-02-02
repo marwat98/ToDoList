@@ -12,7 +12,6 @@
             if ($conn->connect_errno) {
                 $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
             }
-
             $stmt = $conn->prepare($sqlInsert);
             if (!$stmt) {
                 $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
@@ -22,8 +21,7 @@
             } else {
                 $stmt->bind_param("issi",$id,$note,$categories,$pieces);
             }
-
-
+            
             $result = $stmt->execute();
             if ($result) {
                 $this->message->showMessage($template, "Pomyślnie dodano: " . $note, true);

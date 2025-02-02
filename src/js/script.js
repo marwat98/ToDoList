@@ -31,3 +31,16 @@ function addDeleteNoteAjax(event,formID){
             alert('Wystąpił błąd: ' + error.message);
         });
 };
+document.addEventListener('DOMContentLoaded', function() {
+    const close_modal_edit = document.querySelector('.close_modal_edit');
+    const buttonEditFolder = document.querySelector('.edit_folder_modal');
+    const modalEditFolder = document.querySelector('.modal__container__edit');
+
+    buttonEditFolder.onclick = () => {
+        modalEditFolder.classList.add('active');
+    }
+    close_modal_edit.onclick = () => {
+        modalEditFolder.classList.remove('active');
+    }
+
+});
