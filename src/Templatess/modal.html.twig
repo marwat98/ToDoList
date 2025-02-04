@@ -4,21 +4,34 @@
             <div class="modal__inputs__edit">
             <span class="close_modal_edit">&times;</span>
                 <form id ="editFolderName">
-                    <h1>Edytuj notatkę</h1>
-                    <input type="hidden" name="id" value="{{ row.id }}">
-                    <input type="text" type="text" id="note" name="note" placeholder="Napisz produkt" required>
-                    <select id="categories" name="categories">
-                        <option value="Pieczywo">Pieczywo</option>
-                        <option value="Owoce">Owoce</option>
-                        <option value="Warzywa">Warzywa</option>
-                        <option value="Słodycze">Słodycze</option>
-                        <option value="Napoje">Napoje</option>
-                        <option value="Mięso">Mięso</option>
-                        <option value="Produkty mleczne">Produkty mleczne</option>
-                        <option value="Środki czystości">Środki czystości</option>
-                    </select> 
-                    <input id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
-                    <button type="submit" id="edit" name="press" value="edit" class="edit" onclick="addDeleteNoteAjax(event,'editRow');">Edytuj</button>
+                    <div class="edit_name">
+                        <h1>Edytuj notatkę <ion-icon name="document-outline"></ion-icon></h1>
+                    </div>
+                    <div class="modal_input_select">
+                        <table class="list_inputs_modal">
+                            <th>Nazwa produktu</th>
+                            <th>Rodzaj</th>
+                            <th>Ilość</th>
+                            <tr>
+                                <input type="hidden" name="id" value="{{ row.id }}">
+                                <td><input class="addText" type="text" id="note" name="note" placeholder="Wprowadź nazwę" required></td>
+                                <td>
+                                    <select id="categories" name="categories">
+                                        <option value="Pieczywo">Pieczywo</option>
+                                        <option value="Owoce">Owoce</option>
+                                        <option value="Warzywa">Warzywa</option>
+                                        <option value="Słodycze">Słodycze</option>
+                                        <option value="Napoje">Napoje</option>
+                                        <option value="Mięso">Mięso</option>
+                                        <option value="Produkty mleczne">Produkty mleczne</option>
+                                        <option value="Środki czystości">Środki czystości</option>
+                                    </select> 
+                                </td>
+                                <td><input class="pieces" id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
+                            </tr>
+                        </table>
+                        <button type="submit" id="edit" name="press" value="edit" class="edit" onclick="addDeleteNoteAjax(event,'editRow');">Edytuj</button>
+                    </div>
                 </form>
             </div>
         </div>
