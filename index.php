@@ -17,6 +17,8 @@
     $twig->display('header.html.twig');
 
     echo $twig->render('addToDo.html.twig', ['data' => $data]);
+    
+    $twig->display('modal.html.twig');
 
     $twig->display('scripts.html.twig');
 

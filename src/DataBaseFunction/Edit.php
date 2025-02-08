@@ -1,12 +1,18 @@
 <?php
     namespace DataBaseFunction;
     require_once ('../../config.php');
-    use AbstractClasses\AbstractClassAddEditNote;
+    use DataBaseConnection\DataBase;
+    use MessageTwigFunction\MessageHandler;
 
-
-    class AddEditToDataBase extends AbstractClassAddEditNote{
-       
-        public function addEditNote(string $note, string $categories, int $pieces, string $template, string $sqlInsert): bool{
+    class Edit{
+        private $db;
+        private $message;
+    
+        public function __construct(DataBase $db, MessageHandler $message){
+            $this->db = $db;
+            $this->message = $message;
+        }
+        public function editNote(int $id,string $note, string $categories, int $pieces, string $template, string $sqlInsert): bool{
 
             $conn = $this->db->connection();
             if ($conn->connect_errno) {
@@ -16,14 +22,14 @@
             if (!$stmt) {
                 $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
             }
-            $stmt->bind_param("ssi",$note,$categories,$pieces);
+            $stmt->bind_param("ssii",$note,$categories,$pieces,$id);
             
             $result = $stmt->execute();
             if ($result) {
-                $this->message->showMessage($template, "Pomyślnie dodano: " . $note, true);
+                $this->message->showMessage($template, "Pomyślnie edytowano notatkę", true);
                 
             } else {
-                $this->message->showMessage($template, "Dodanie notatki nie powiodło się", false);
+                $this->message->showMessage($template, "Edytowanie notatki nie powiodło się", false);
             }
             
             return $result;
@@ -32,4 +38,7 @@
             $this->db->closeConnection();
     }
 }
+
+
+
 ?>

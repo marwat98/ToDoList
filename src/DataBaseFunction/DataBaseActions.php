@@ -4,9 +4,10 @@
     use DataBaseFunction\DeleteFromDataBase;
     use MessageTwigFunction\MessageHandler;
     use DataBaseConnection\DataBase;
+    use DataBaseFunction\Edit;
 
-    // error_reporting(E_ALL);  
-    // ini_set('display_errors', 1);  
+    error_reporting(E_ALL);  
+    ini_set('display_errors', 1);  
 
 
     $db = new DataBase("localhost","root","","toDoList");
@@ -19,13 +20,8 @@
         $note = $_POST['note'];
         $categories = $_POST['categories'];
         $pieces = (int)$_POST['pieces'];
+        $id2 = (int)$_POST['id2'];
 
-        if (!isset($_POST['press']) || $_POST['press'] === "" ||
-            !isset($_POST['note']) || $_POST['note'] === "" || 
-            !isset($_POST['categories']) || $_POST['categories'] === "" ||
-            !isset($_POST['pieces']) || !is_numeric($_POST['pieces']) || (int)$_POST['pieces'] <= 0){
-                throw new Exception("Błąd: pole nie może być puste");
-            } else{
                 switch($press){
                     // Action which addition notes to data base
                     case "addNote":
@@ -35,7 +31,7 @@
                             } else {
                                 $sqlInsertData = "INSERT INTO addtodatabase (note,category,pieces) VALUES (?,?,?)";
                                 $addToDataBase = new AddEditToDataBase($db,$message);
-                                $addToDataBase->addEditNote(null,$note,$categories,$pieces,$template,$sqlInsertData);
+                                $addToDataBase->addEditNote($note,$categories,$pieces,$template,$sqlInsertData);
                             }
                         } catch (Exception $e) {
                             echo "Error: " . $e->getMessage();
@@ -47,8 +43,8 @@
                                 throw new Exception("Użytkownik nie wpisał notatki , nie wybrał kategori , nie wpisał ilości");
                             } else {
                                 $sqlInsertData = "UPDATE addtodatabase SET note = ? , category = ? , pieces = ? WHERE id = ?";
-                                $editNote = new AddEditToDataBase($db,$message);
-                                $editNote->addEditNote($id,$note,$categories,$pieces,$template,$sqlInsertData);
+                                $editNote = new Edit($db,$message);
+                                $editNote->editNote($id2,$note,$categories,$pieces,$template,$sqlInsertData);
                             }
                         } catch (Exception $e) {
                             echo "Error: " . $e->getMessage();
@@ -67,6 +63,6 @@
                         }
                     break;
                 }
-            }
-        }     
+            }  
+        // }
 ?> 

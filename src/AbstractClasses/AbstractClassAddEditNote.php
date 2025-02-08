@@ -11,7 +11,7 @@ abstract class  AbstractClassAddEditNote{
         $this->db = $db;
         $this->message = $message;
     }
-    abstract public function addEditNote(?int $id,string $note,string $categories, int $pieces, string $template,string $sqlInsert):bool;
+    abstract public function addEditNote(string $note,string $categories, int $pieces, string $template,string $sqlInsert):bool;
 }
 
 

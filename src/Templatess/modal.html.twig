@@ -1,39 +1,40 @@
-<section>
-    <div class="modal">
-        <div class="modal__container__edit">
-            <div class="modal__inputs__edit">
-            <span class="close_modal_edit">&times;</span>
-                <form id ="editFolderName">
-                    <div class="edit_name">
-                        <h1>Edytuj notatkę <ion-icon name="document-outline"></ion-icon></h1>
-                    </div>
-                    <div class="modal_input_select">
-                        <table class="list_inputs_modal">
-                            <th>Nazwa produktu</th>
-                            <th>Rodzaj</th>
-                            <th>Ilość</th>
-                            <tr>
-                                <input type="hidden" name="id" value="{{ row.id }}">
-                                <td><input class="addText" type="text" id="note" name="note" placeholder="Wprowadź nazwę" required></td>
-                                <td>
-                                    <select id="categories" name="categories">
-                                        <option value="Pieczywo">Pieczywo</option>
-                                        <option value="Owoce">Owoce</option>
-                                        <option value="Warzywa">Warzywa</option>
-                                        <option value="Słodycze">Słodycze</option>
-                                        <option value="Napoje">Napoje</option>
-                                        <option value="Mięso">Mięso</option>
-                                        <option value="Produkty mleczne">Produkty mleczne</option>
-                                        <option value="Środki czystości">Środki czystości</option>
-                                    </select> 
-                                </td>
-                                <td><input class="pieces" id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
-                            </tr>
-                        </table>
-                        <button type="submit" id="edit" name="press" value="edit" class="edit" onclick="addDeleteNoteAjax(event,'editRow');">Edytuj</button>
-                    </div>
-                </form>
-            </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edytujesz: {{content.note}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <form id="addToDataBase">
+            <table class="list_inputs">
+                <th>Nazwa produktu</th>
+                <th>Rodzaj</th>
+                <th>Ilość</th>
+                <tr>
+                    <input type="hidden">
+                    <td><input class="addText" type="text" id="note" name="note" placeholder="Napisz produkt" required></td>
+                    <td>
+                        <select id="categories" name="categories">
+                            <option value="Pieczywo">Pieczywo</option>
+                            <option value="Owoce">Owoce</option>
+                            <option value="Warzywa">Warzywa</option>
+                            <option value="Słodycze">Słodycze</option>
+                            <option value="Napoje">Napoje</option>
+                            <option value="Mięso">Mięso</option>
+                            <option value="Produkty mleczne">Produkty mleczne</option>
+                            <option value="Środki czystości">Środki czystości</option>
+                        </select> 
+                    </td>
+                    <td><input class="pieces" id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
+                </tr>
+            </table>
+    </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
-</section>
+  </div>

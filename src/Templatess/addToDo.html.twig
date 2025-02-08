@@ -40,13 +40,9 @@
                         <td class="row_note"><li class="note_item">{{ row.note }}</li></td>
                         <td class="row_category"><li>{{ row.category }}</li></td>
                         <td class="row_pieces"><li>{{ row.pieces }}</li></td>
-                        <td>
-                            <button class="editButton">
-                                <a class="edit_folder_modal">
-                                    <ion-icon name="create-outline"></ion-icon>
-                                </a>
-                            </button>
-                        </td>
+                        <td> <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Edytuj
+                          </button></td>
                         <form id="deleteWithDataBase">
                             <input type="hidden" name="id" value="{{ row.id }}">
                             <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="addDeleteNoteAjax(event,'deleteWithDataBase');">&times;</button></td>
