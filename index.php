@@ -3,11 +3,15 @@
     use ShowNotes\ShowContent;
 
     try {
-        $sqlSelect = "SELECT id,note,category,pieces FROM addToDataBase";
-        $template = "message.html.twig";
+        
+        $id = isset($_GET['modal_id']) ? $_GET['modal_id'] : null;
 
+        $sqlSelect = "SELECT * FROM addToDataBase";
         $showContent = new ShowContent($twig);
-        $data = $showContent->dataBaseContent($sqlSelect,$template);
+        $data = $showContent->dataBaseContent($sqlSelect, "message.html.twig");
+
+        $updateQuery = "SELECT * FROM addToDataBase WHERE id = '$id'";
+        $update = $showContent->dataBaseContent($updateQuery, "message.html.twig");
 
     } catch (Exception $e) {
         $twig->display('message.html.twig',['message' => $e->getMessage()]);
@@ -17,10 +21,18 @@
     $twig->display('header.html.twig');
 
     echo $twig->render('addToDo.html.twig', ['data' => $data]);
+
     
-    $twig->display('modal.html.twig');
+    echo $twig->render('modal.html.twig', ['data' => $id]);
 
-    $twig->display('scripts.html.twig');
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            myModal.show();
+        });    
+    </script>";
 
-    $twig->display('footer.html.twig');
+    echo $twig->display('scripts.html.twig');
+    echo $twig->display('footer.html.twig');
 ?>
+

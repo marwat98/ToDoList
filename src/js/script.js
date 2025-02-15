@@ -31,3 +31,5 @@ function addDeleteNoteAjax(event,formID){
             alert('Wystąpił błąd: ' + error.message);
         });
 };
+
+

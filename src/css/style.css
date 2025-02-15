@@ -89,7 +89,7 @@ img{
     border:none;
     outline:none;
     padding: 10px 30px;
-    background: #6940ae;
+    background-color: #6f42c1; 
     color: #fff;
     font-size: 16px;
     border-radius: 10px;
@@ -99,8 +99,11 @@ img{
     margin-left: 15px;
     width: 450px;
 }
-button:hover{
+.add:hover,
+.delete:hover{
     transform: scale(1.05);
+    background-color: #5e3aa8;
+    color:white;
 }
 .table_display{
     margin-top: 1%;
@@ -160,7 +163,7 @@ ul li {
     outline:none;
     width: 30px;
     height: 30px;
-    background: #6940ae;
+    background-color: #6f42c1; 
     color: #fff;
     font-size: 16px;
     border-radius: 20%;
@@ -169,14 +172,26 @@ ul li {
 }
 .btn-light{
     font-size: 13px;
+    background-color: #6f42c1; 
+    color: white; 
+    border: none;
+} 
+.btn-light:hover,
+.btn-primary:hover{
+    transform: scale(1.05);
+    background-color: #5e3aa8;
+    color: white;
+    transition: transform 0.3s ease;
+}
+.btn-primary{
     background-color: #6f42c1; /* Bootstrapowy odcień fioletowego */
     color: white; /* Kolor tekstu */
     border: none;
-} 
-.btn-light:hover{
+}
+.btn-secondary:hover{
     transform: scale(1.05);
-    background-color: #6f42c1;
     color: white;
+    transition: transform 0.3s ease;
 }
 
 .show_id{
@@ -188,6 +203,17 @@ ul li {
     font-style: italic;
     color: #555;
     width: 10px;
+}
+ion-icon{
+    width: 25px;
+    height: 25px;
+    color:#3d387b;
+    position: absolute;
+    margin-top: 0.2%;
+    margin-left: 1%;
+}
+.modal-title{
+    color: #3d387b;
 }
 
 

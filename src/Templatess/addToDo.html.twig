@@ -40,9 +40,7 @@
                         <td class="row_note"><li class="note_item">{{ row.note }}</li></td>
                         <td class="row_category"><li>{{ row.category }}</li></td>
                         <td class="row_pieces"><li>{{ row.pieces }}</li></td>
-                        <td> <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Edytuj
-                          </button></td>
+                        <td><a href="?modal_id={{ row.id }}" type="button" class="btn btn-light">Edytuj</a></td>
                         <form id="deleteWithDataBase">
                             <input type="hidden" name="id" value="{{ row.id }}">
                             <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="addDeleteNoteAjax(event,'deleteWithDataBase');">&times;</button></td>
@@ -53,5 +51,3 @@
             </ul>
         </div>
 </section>
-{% include "modal.html.twig" %}
-{% include "scripts.html.twig" %}
