@@ -6,7 +6,7 @@
 
     class AddEditToDataBase extends AbstractClassAddEditNote{
        
-        public function addEditNote(string $note, string $categories, int $pieces, string $template, string $sqlInsert): bool{
+        public function addEditNote(?int $id,string $note, string $categories, int $pieces, string $template, string $sqlInsert): bool{
 
             $conn = $this->db->connection();
             if ($conn->connect_errno) {
@@ -16,14 +16,17 @@
             if (!$stmt) {
                 $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
             }
-            $stmt->bind_param("ssi",$note,$categories,$pieces);
-            
+            if($id !== null){
+                $stmt->bind_param("ssii",$note,$categories,$pieces,$id);
+            } else {
+                $stmt->bind_param("ssi",$note,$categories,$pieces);
+            }
             $result = $stmt->execute();
             if ($result) {
-                $this->message->showMessage($template, "Pomyślnie dodano: " . $note, true);
+                $this->message->showMessage($template, "Pomyślnie wykonano operację: " . $note, true);
                 
             } else {
-                $this->message->showMessage($template, "Dodanie notatki nie powiodło się", false);
+                $this->message->showMessage($template, "Operacja nie powiodła się", false);
             }
             
             return $result;

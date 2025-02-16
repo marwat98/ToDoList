@@ -25,13 +25,6 @@
     
     echo $twig->render('modal.html.twig', ['data' => $id]);
 
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-            myModal.show();
-        });    
-    </script>";
-
     echo $twig->display('scripts.html.twig');
     echo $twig->display('footer.html.twig');
 ?>

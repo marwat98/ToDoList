@@ -31,5 +31,8 @@ function addDeleteNoteAjax(event,formID){
             alert('Wystąpił błąd: ' + error.message);
         });
 };
-
+document.addEventListener('DOMContentLoaded', function() {
+    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    myModal.show();
+});    
 
