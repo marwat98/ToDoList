@@ -1,5 +1,5 @@
  <?php
-    require_once ('../../config.php');
+    require_once ('C:\xampp\htdocs\ToDoList\config.php');
     use DataBaseFunction\AddEditToDataBase;
     use DataBaseFunction\DeleteFromDataBase;
     use MessageTwigFunction\MessageHandler;

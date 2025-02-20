@@ -1,6 +1,6 @@
 <?php
     namespace DataBaseFunction;
-    require_once ('../../config.php');
+    require_once ('C:\xampp\htdocs\ToDoList\config.php');
     use AbstractClasses\AbstractClassAddEditNote;
 
 
@@ -13,14 +13,17 @@
                 $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
             }
             $stmt = $conn->prepare($sqlInsert);
+
             if (!$stmt) {
                 $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
             }
+
             if($id !== null){
                 $stmt->bind_param("ssii",$note,$categories,$pieces,$id);
             } else {
                 $stmt->bind_param("ssi",$note,$categories,$pieces);
             }
+            
             $result = $stmt->execute();
             if ($result) {
                 $this->message->showMessage($template, "Pomyślnie wykonano operację: " . $note, true);

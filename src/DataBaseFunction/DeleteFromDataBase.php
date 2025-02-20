@@ -3,7 +3,7 @@
     use DataBaseConnection\DataBase;
     use Interfaces\DeleteNoteToDataBaseInterface;
     use MessageTwigFunction\MessageHandler;
-    require_once ('../../config.php');
+    require_once ('C:\xampp\htdocs\ToDoList\config.php');
 
     class DeleteFromDataBase implements DeleteNoteToDataBaseInterface{
         private $db;
