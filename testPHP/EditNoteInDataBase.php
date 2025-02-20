@@ -5,16 +5,8 @@ use DataBaseFunction\AddEditToDataBase;
 use DataBaseConnection\DataBase;
 use MessageTwigFunction\MessageHandler;
 
-/** Imitation mysqli class only to tests */
-if (!class_exists('mysqli')) {
-    class mysqli {
-        public function ping():bool {
-            return true; 
-        }
-    }
-}
 
-class AddToDataBaseTest extends TestCase{
+class EditNoteInDataBase extends TestCase{
 
     public function getMockMySQLStmtTrue(){
         
@@ -28,7 +20,7 @@ class AddToDataBaseTest extends TestCase{
 
         return $mockMySqliStmt;
     }
-
+    
     public function getMockMySQLStmtFalse(){
         
         $mockMySqliStmt = $this->getMockBuilder(\mysqli_stmt::class)
@@ -102,24 +94,32 @@ class AddToDataBaseTest extends TestCase{
         return $mockMessage;
     }
 
-    public function testFunctionAddNoteOrReturnTrue():void{
+    
+    public function testEditNoteInDataBaseAndReturnTrue():void{
         // mock database and message function
         $mockDatabase = $this->getMockDataBaseTrue('localhost', 'root', '', 'toDoList');
         $mockMessage = $this->getMockMessageHandler('message.html.twig','Pomyślnie wykonano operację: marchewka',true);
-         // test reaction for add note, category and pieces to database
-        $mockAddToDataBase = new AddEditToDataBase($mockDatabase, $mockMessage);
-        $result = $mockAddToDataBase->addEditNote(null,'marchewka','warzywa',5,'message.html.twig','INSERT INTO addtodatabase (note,category,pieces) VALUES (?,?,?)');
-        $this->assertTrue($result);
-    } 
 
-    public function testFunctionAddNoteOrReturnFalse():void{
+        $mockAddToDataBase = new AddEditToDataBase($mockDatabase, $mockMessage);
+        $result = $mockAddToDataBase->addEditNote(1,'marchewka','warzywa',5,'message.html.twig','UPDATE addtodatabase SET note = ? , category = ? , pieces = ? WHERE id = ?');
+        $this->assertTrue($result);
+    }
+    
+    public function testEditNoteInDataBaseAndReturnFalse():void{
         // mock database and message function
         $mockDatabase = $this->getMockDataBaseFalse('localhost', 'root', '', 'toDoList');
         $mockMessage = $this->getMockMessageHandler('message.html.twig','Operacja nie powiodła się',false);
-        // test reaction if program dont connection with database
+
         $mockAddToDataBase = new AddEditToDataBase($mockDatabase, $mockMessage);
-        $result = $mockAddToDataBase->addEditNote(null,'marchewka','warzywa',5,'message.html.twig','INSERT INTO addtodatabase (note,category,pieces) VALUES (?,?,?)');
+        $result = $mockAddToDataBase->addEditNote(1,'marchewka','warzywa',5,'message.html.twig','UPDATE addtodatabase SET note = ? , category = ? , pieces = ? WHERE id = ?');
         $this->assertFalse($result);
     }
+
 }
+
+
+
+
+
+
 ?>
