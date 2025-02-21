@@ -36,3 +36,31 @@ document.addEventListener('DOMContentLoaded', function() {
     myModal.show();
 });    
 
+function sleep(ms){
+    return new Promise((resolve)=> setTimeout(resolve,ms));
+}
+const phrases = ["Logowanie.."];
+const element = document.getElementById("login");
+
+let sleepTime = 250;
+let curPhraseIndex = 0;
+
+let writeLetter = async () =>{
+    while(true){
+        let curWord = phrases[curPhraseIndex];
+        for (let i = 0; i< curWord.length; i++) {
+            element.innerText = curWord.substring(0, i + 1);
+            await sleep(sleepTime);
+        }
+        await sleep(sleepTime * 3);
+
+        for (let i = curWord.length; i > 0; i--) {
+            element.innerText = curWord.substring(0, i - 1);
+            await sleep(sleepTime);
+        }
+        await sleep(sleepTime * 3);
+        }
+   };
+
+writeLetter();
+

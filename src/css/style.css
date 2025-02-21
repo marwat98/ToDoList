@@ -102,7 +102,7 @@ img{
 .add:hover,
 .delete:hover{
     transform: scale(1.05);
-    background-color: #5e3aa8;
+    background-color: #7551C1;
     color:white;
 }
 .table_display{
@@ -179,7 +179,7 @@ ul li {
 .btn-light:hover,
 .btn-primary:hover{
     transform: scale(1.05);
-    background-color: #5e3aa8;
+    background-color: #7551C1;
     color: white;
     transition: transform 0.3s ease;
 }
@@ -193,7 +193,6 @@ ul li {
     color: white;
     transition: transform 0.3s ease;
 }
-
 .show_id{
     color:white;
 }
@@ -214,6 +213,49 @@ ion-icon{
 }
 .modal-title{
     color: #3d387b;
+}
+.container_login{
+    position: relative;
+    margin-top: 10%;
+    left: 40%;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 450px;
+    height: 420px;
+    border: 2px solid rgba(255,255,255, .2);
+    box-shadow: 0 0 10px rgba(0,0,0, .2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(20px); 
+}
+.login_label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    font-size: 35px;
+    font-weight: bold;
+
+}
+.container_mb-3{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 17%;
+}
+.mb-3{
+    margin-top: 5%;
+}
+.form-control{
+    left: 15%;
+    width: 300px;
+}
+.btn-primary{
+    width: 300px;
+}
+.form-label{
+    left: 15%;
 }
 
 
