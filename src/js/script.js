@@ -30,37 +30,35 @@ function addDeleteNoteAjax(event,formID){
         .catch(error => {
             alert('Wystąpił błąd: ' + error.message);
         });
-};
-document.addEventListener('DOMContentLoaded', function() {
-    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-    myModal.show();
-});    
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.show();
+    });    
 
-function sleep(ms){
-    return new Promise((resolve)=> setTimeout(resolve,ms));
-}
-const phrases = ["Logowanie.."];
-const element = document.getElementById("login");
+    function sleep(ms){
+        return new Promise((resolve)=> setTimeout(resolve,ms));
+    }
+    const fruits = ["🍎", "🍌", "🍊"]; 
+    const fruitElement = document.getElementById("fruits");
+    let fruitIndex = 0;
+    const sleepTime = 500; 
 
-let sleepTime = 250;
-let curPhraseIndex = 0;
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-let writeLetter = async () =>{
-    while(true){
-        let curWord = phrases[curPhraseIndex];
-        for (let i = 0; i< curWord.length; i++) {
-            element.innerText = curWord.substring(0, i + 1);
-            await sleep(sleepTime);
+    let animateFruits = async () => {
+        while (true) {
+            let currentFruit = fruits[fruitIndex];
+
+            fruitElement.innerText = " " + currentFruit;
+            await sleep(sleepTime * 4);
+
+            fruitElement.innerText = "";
+            await sleep(sleepTime * 2);
+
+            fruitIndex = (fruitIndex + 1) % fruits.length;
         }
-        await sleep(sleepTime * 3);
+    };
 
-        for (let i = curWord.length; i > 0; i--) {
-            element.innerText = curWord.substring(0, i - 1);
-            await sleep(sleepTime);
-        }
-        await sleep(sleepTime * 3);
-        }
-   };
 
-writeLetter();
-
+    animateFruits();

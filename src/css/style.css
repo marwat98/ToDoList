@@ -184,8 +184,8 @@ ul li {
     transition: transform 0.3s ease;
 }
 .btn-primary{
-    background-color: #6f42c1; /* Bootstrapowy odcień fioletowego */
-    color: white; /* Kolor tekstu */
+    background-color: #6f42c1;
+    color: white; 
     border: none;
 }
 .btn-secondary:hover{
@@ -257,33 +257,98 @@ ion-icon{
 .form-label{
     left: 15%;
 }
-.container_logo{
+nav {
     display: flex;
-    width: 200px;
+    justify-content: space-between; /* Ustawia elementy na przeciwległych końcach */
+    align-items: center;
+    padding: 4px 20px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(20px); 
+}
+
+.container_logo {
+    display: flex;
+    align-items: center;
     color: white;
 }
-.container_logo ul{
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    position: relative;
-    left: 200%;
-}
-.container_logo li {
-    width: 210px;
-}
-.container_logo h2{
-    position: relative;
-    margin-top: 11%;
-    right: 7%;
-}
-.container_logo img{
+
+.container_logo img {
     width: 85px;
     height: 85px;
-    margin-top: 1%;
-    margin-left: 1%;
-    background-color: transparent;
 }
+
+.container_logo h2{
+    position: relative;
+    margin-top: 2%;
+    right: 7%;
+}
+.nav_links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Dodaje odstępy między elementami listy */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.nav_links li {
+    cursor: pointer;
+    color: white;
+}
+.nav_links li:hover{
+    color: #3d387b;
+}
+.btn-secondary {
+    padding: 8px 12px;
+    border: none;
+    background-color:#3d387b;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn-secondary:hover {
+    background-color: #6f42c1;
+}
+.btn-outline-info{
+    border: 1px solid white;
+    color: white;
+    width: 150px;
+    margin-right: 20px;
+}
+.btn-outline-info:hover{
+    border: 1px solid #3d387b;
+    background-color:#3d387b;
+    color: white;
+}
+.description_shopper{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 3%;
+}
+.shopper_head h1 {
+    font-size: 50px;
+    color: white;
+    font-family: "Pacifico", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 2%;
+}
+.shopper_body h2{
+    color: white;
+    font-family: "Pacifico", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 3%;
+    line-height: 55px;
+}
+.shopper_body h3 {
+    color: white;
+    font-size: 20px;
+    font-family: "Ribeye", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 1%;
+}
+
 
 
 
