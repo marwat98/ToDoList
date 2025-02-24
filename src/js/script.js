@@ -35,30 +35,3 @@ function addDeleteNoteAjax(event,formID){
         const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
         myModal.show();
     });    
-
-    function sleep(ms){
-        return new Promise((resolve)=> setTimeout(resolve,ms));
-    }
-    const fruits = ["🍎", "🍌", "🍊"]; 
-    const fruitElement = document.getElementById("fruits");
-    let fruitIndex = 0;
-    const sleepTime = 500; 
-
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-    let animateFruits = async () => {
-        while (true) {
-            let currentFruit = fruits[fruitIndex];
-
-            fruitElement.innerText = " " + currentFruit;
-            await sleep(sleepTime * 4);
-
-            fruitElement.innerText = "";
-            await sleep(sleepTime * 2);
-
-            fruitIndex = (fruitIndex + 1) % fruits.length;
-        }
-    };
-
-
-    animateFruits();

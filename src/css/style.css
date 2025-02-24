@@ -239,6 +239,9 @@ ion-icon{
     font-weight: bold;
 
 }
+.conatiner_description{
+    display: flex;
+}
 .container_mb-3{
     position: relative;
     margin-top: 10%;
@@ -327,14 +330,12 @@ nav {
 .shopper_head h1 {
     font-size: 50px;
     color: white;
-    font-family: "Pacifico", serif;
     font-weight: 400;
     font-style: normal;
     margin-bottom: 2%;
 }
 .shopper_body h2{
     color: white;
-    font-family: "Pacifico", serif;
     font-weight: 400;
     font-style: normal;
     margin-bottom: 3%;
@@ -343,10 +344,14 @@ nav {
 .shopper_body h3 {
     color: white;
     font-size: 20px;
-    font-family: "Ribeye", serif;
     font-weight: 400;
     font-style: normal;
-    margin-bottom: 1%;
+    margin-bottom: 3%;
+}
+.shopper_image img{
+    margin-left: 22%;
+    width: 800px;
+    height: auto;
 }
 
 
