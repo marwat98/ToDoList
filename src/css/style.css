@@ -216,19 +216,27 @@ ion-icon{
 }
 .container_login{
     position: relative;
-    margin-top: 10%;
+    margin-top: 5%;
     left: 40%;
     display: inline-block;
     align-items: center;
     justify-content: center;
     color: white;
     width: 450px;
-    height: 420px;
+    height: 480px;
     border: 2px solid rgba(255,255,255, .2);
     box-shadow: 0 0 10px rgba(0,0,0, .2);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(20px); 
+}
+.container_login a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    text-decoration: none;
+    color: white;
 }
 .login_label{
     display: flex;
@@ -352,6 +360,29 @@ nav {
     margin-left: 22%;
     width: 800px;
     height: auto;
+}
+.linia {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.linia::before,
+.linia::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid white;
+}
+
+.linia::before {
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.linia::after {
+    margin-left: 10px;
+    margin-right: 20px;
 }
 
 
