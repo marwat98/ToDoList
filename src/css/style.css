@@ -307,6 +307,10 @@ nav {
 }
 .nav_links a{
     text-decoration: none;
+    color: white;
+}
+.nav_links a:hover{
+    color: #3d387b;
 }
 .btn-secondary {
     padding: 8px 12px;
@@ -427,6 +431,25 @@ nav {
 }
 .container_registration a{
     margin-left: 2%;
+}
+.container_register{
+    position: relative;
+    margin-top: 5%;
+    left: 40%;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 450px;
+    height: 570px;
+    border: 2px solid rgba(255,255,255, .2);
+    box-shadow: 0 0 10px rgba(0,0,0, .2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(20px); 
+}
+.container_register button{
+    margin-top: 7%;
 }
 
 

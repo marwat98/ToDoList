@@ -20,7 +20,7 @@
 
     $twig->display('header.html.twig');
 
-    echo $twig->render('addToDo.html.twig', ['data' => $data]);
+    echo $twig->render('addNote.html.twig', ['data' => $data]);
 
     
     echo $twig->render('modal.html.twig', ['data' => $id]);

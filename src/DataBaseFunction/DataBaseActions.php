@@ -58,6 +58,7 @@
                     echo "Error: " . $e->getMessage();
                 }
             break;
+            case "register":
         }
     }  
 
