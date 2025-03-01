@@ -6,7 +6,7 @@ listContainer.addEventListener("click", function(e){
     }
 });
 
-function addDeleteNoteAjax(event,formID){
+function fetchAjaxFunction(event,formID){
     event.preventDefault();
 
     const button = event.target;

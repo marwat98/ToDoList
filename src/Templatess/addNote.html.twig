@@ -27,7 +27,7 @@
                             <td><input class="pieces" id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
                         </tr>
                     </table>
-                <button type="submit" name="press" value="addNote" id="add" class="add" onclick="addDeleteNoteAjax(event,'addToDataBase');">Dodaj</button>
+                <button type="submit" name="press" value="addNote" id="add" class="add" onclick="fetchAjaxFunction(event,'addToDataBase');">Dodaj</button>
             </form>
         </div>
     </div>
@@ -43,7 +43,7 @@
                         <td><a href="?modal_id={{ row.id }}" type="button" class="btn btn-light">Edytuj</a></td>
                         <form id="deleteWithDataBase">
                             <input type="hidden" name="id" value="{{ row.id }}">
-                            <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="addDeleteNoteAjax(event,'deleteWithDataBase');">&times;</button></td>
+                            <td><button type="submit" id="delete" name="press" value="deleteNote" class="delete" onclick="fetchAjaxFunction(event,'deleteWithDataBase');">&times;</button></td>
                         </form>
                     </tr>
                 </table>

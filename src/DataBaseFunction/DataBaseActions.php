@@ -4,16 +4,27 @@
     use DataBaseFunction\DeleteFromDataBase;
     use MessageTwigFunction\MessageHandler;
     use DataBaseConnection\DataBase;
+    use DataBaseFunction\RegisterUser;
 
     $db = new DataBase("localhost","root","","toDoList");
     $message = new MessageHandler($twig);
     $template = "message.html.twig";
+
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $press = $_POST['press'];
         $note = $_POST['note'];
         $categories = $_POST['categories'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $checkEmail = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+        $password = $_POST['password'];
+        $checkPassword = $_POST['checkPassword'];
         $pieces = isset($_POST['pieces']) ? (int)$_POST['pieces'] : null;
         $id2 = isset($_POST['id2']) ? (int)$_POST['id2'] : null;
 
@@ -59,6 +70,27 @@
                 }
             break;
             case "register":
+                try{
+                    if (empty($username) || empty($email) || empty($password)) {
+                        throw new Exception("Nie wprowadzono wszystkich danych.");
+                    }
+                    if (strlen($username) > 10) {
+                        throw new Exception("Nazwa użytkownika jest zbyt długa. Maksymalna długość to 10 znaków.");
+                    }
+                    if (!preg_match($checkEmail, $email)) {
+                        throw new Exception("Podana nazwa nie jest mailem.");
+                    }
+                    if ($password !== $checkPassword) {
+                        throw new Exception("Hasła nie są identyczne.");
+                    }
+                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $registerUser = new RegisterUser($db, $message);
+                    $registerUser->createAcount($username, $email, $hashedPassword, $template);
+                    
+                } catch (Exception $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+            break;
         }
     }  
 

@@ -9,31 +9,31 @@
                 <li><a href="">Instrukcja obsługi</a></li>
                 <li><a href="">Kontakt</a></li>
                 <li>
-                    <button type="button" class="btn btn-secondary">Logowanie</button>
+                    <a href="login.php"><button type="button" class="btn btn-secondary">Logowanie</button></a>
                 </li>
             </ul>
         </nav>
-    <form>
+    <form id="registerUser">
         <div class="container_register">
             <label class="login_label"><span id="login">Rejestracja</span></label>
             <div class="container_mb-3">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Nazwa użytkownika</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" required>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Hasło</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Powtórz hasło</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" id="checkPassword" name="checkPassword" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+                <button type="submit" name="press" value="register" class="btn btn-primary" onclick="fetchAjaxFunction(event,'registerUser');">Zarejestruj się</button>
             </div>
         </div>
       </form>
