@@ -2,6 +2,13 @@
     require_once('config.php');
     use ShowNotes\ShowContent;
 
+    session_start();
+
+    if (!isset($_SESSION["user_id"])) {
+        header("Location: login.php");
+        exit;
+    }
+
     try {
         
         $id = isset($_GET['modal_id']) ? $_GET['modal_id'] : null;

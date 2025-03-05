@@ -1,36 +1,47 @@
 <section>
-    <div class="container">
-        <div class="todolist">
-            <h2>Shopp-list</h2>
-            <img src="src/images/list.png" class="list">
+    <nav>
+        <div class="container_logo">
+            <img src="src/images/shopper.png" alt="Shopper" class="shopper">
+            <h2>hopper</h2>
         </div>
-        <div class="toDoList_action">
-            <form id="addToDataBase">
-                    <table class="list_inputs">
-                        <th>Nazwa produktu</th>
-                        <th>Rodzaj</th>
-                        <th>Ilość</th>
-                        <tr>
-                            <td><input class="addText" type="text" id="note" name="note" placeholder="Napisz produkt" required></td>
-                            <td>
-                                <select id="categories" name="categories" required>
-                                    <option value="Pieczywo">Pieczywo</option>
-                                    <option value="Owoce">Owoce</option>
-                                    <option value="Warzywa">Warzywa</option>
-                                    <option value="Słodycze">Słodycze</option>
-                                    <option value="Napoje">Napoje</option>
-                                    <option value="Mięso">Mięso</option>
-                                    <option value="Produkty mleczne">Produkty mleczne</option>
-                                    <option value="Środki czystości">Środki czystości</option>
-                                </select> 
-                            </td>
-                            <td><input class="pieces" id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
-                        </tr>
-                    </table>
-                <button type="submit" name="press" value="addNote" id="add" class="add" onclick="fetchAjaxFunction(event,'addToDataBase');">Dodaj</button>
-            </form>
+            <ul class="nav_links">>
+                <li>
+                    <a href="login.php"><button type="button" class="btn btn-secondary">Wyloguj</button></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="todolist">
+                <h2>Shopp-list</h2>
+                <img src="src/images/list.png" class="list">
+            </div>
+            <div class="toDoList_action">
+                <form id="addToDataBase">
+                        <table class="list_inputs">
+                            <th>Nazwa produktu</th>
+                            <th>Rodzaj</th>
+                            <th>Ilość</th>
+                            <tr>
+                                <td><input class="addText" type="text" id="note" name="note" placeholder="Napisz produkt" required></td>
+                                <td>
+                                    <select id="categories" name="categories" required>
+                                        <option value="Pieczywo">Pieczywo</option>
+                                        <option value="Owoce">Owoce</option>
+                                        <option value="Warzywa">Warzywa</option>
+                                        <option value="Słodycze">Słodycze</option>
+                                        <option value="Napoje">Napoje</option>
+                                        <option value="Mięso">Mięso</option>
+                                        <option value="Produkty mleczne">Produkty mleczne</option>
+                                        <option value="Środki czystości">Środki czystości</option>
+                                    </select> 
+                                </td>
+                                <td><input class="pieces" id="pieces" name="pieces" type="number" placeholder="Ilość sztuk" required></td>
+                            </tr>
+                        </table>
+                    <button type="submit" name="press" value="addNote" id="add" class="add" onclick="fetchAjaxFunction(event,'addToDataBase');">Dodaj</button>
+                </form>
+            </div>
         </div>
-    </div>
         <div class="display">
             <ul id="list-container">
                 {% for row in data %}
