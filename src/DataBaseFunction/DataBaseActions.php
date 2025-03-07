@@ -5,6 +5,7 @@
     use MessageTwigFunction\MessageHandler;
     use DataBaseConnection\DataBase;
     use DataBaseFunction\RegisterUser;
+    use DataBaseFunction\LoginToAcount;
 
     $db = new DataBase("localhost","root","","toDoList");
     $message = new MessageHandler($twig);
@@ -13,7 +14,7 @@
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
-
+        session_start();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -91,6 +92,18 @@
                     echo "Error: " . $e->getMessage();
                 }
             break;
+            case "login":
+                try{
+                    if (empty($username) ||  empty($password)) {
+                        throw new Exception("Nie wprowadzono wszystkich danych.");
+                    }
+                    $login = new LoginToAcount($db,$message);
+                    if($login->loginOnAccount($username,$password,$template)){
+                        $_SESSION['auth'] == true;
+                    }
+                } catch(Exception $e){
+                    echo "Error: " . $e->getMessage();
+                }
         }
     }  
 

@@ -12,13 +12,14 @@ class LoginToAcount{
         $this->db = $db;
         $this->message = $message;
     }
-    public function loginOnAcoount(string $username, string $password, string $template): bool{
+    public function loginOnAccount(string $username, string $password, string $template){
+        
         $conn = $this->db->connection();
         if($conn->connect_errno){
             $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
             return false;
         }
-        $checkAcount = $conn->prepare('SELECT * FROM users WHERE username = ?');
+        $checkAcount = $conn->prepare('SELECT * FROM users WHERE username = ? LIMIT 1');
 
         if (!$checkAcount) {
             $this->message->showMessage($template, "Błąd zapytania SQL", false);
@@ -39,12 +40,6 @@ class LoginToAcount{
             $this->message->showMessage($template, "Niepoprawne hasło", false);
             return false;
         }
-
-        session_start();
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        header('http://localhost/ToDoList/index.php');
-        return true;
     }
 }
 
