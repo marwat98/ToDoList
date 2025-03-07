@@ -3,7 +3,7 @@
     use ShowNotes\ShowContent;
     use Steampixel\Route;
 
-    Route::add('/',function(){
+    Route::add('/home',function(){
         global $twig;
         $twig->display('home.html.twig');
     });
@@ -33,8 +33,9 @@
         }
 
     });
-    
+
     Route::run('/ToDoList');
+    
 
 ?>
 
