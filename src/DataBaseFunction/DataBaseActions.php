@@ -11,21 +11,16 @@
     $message = new MessageHandler($twig);
     $template = "message.html.twig";
 
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
-        session_start();
-
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $press = $_POST['press'];
-        $note = $_POST['note'];
-        $categories = $_POST['categories'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
+        $note = $_POST['note'] ?? null;
+        $categories = $_POST['categories'] ?? null;
+        $loginUser = $_POST['loginUser'];
+        $email = $_POST['email'] ?? null;
         $checkEmail = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
         $password = $_POST['password'];
-        $checkPassword = $_POST['checkPassword'];
+        $checkPassword = $_POST['checkPassword'] ?? null;
         $pieces = isset($_POST['pieces']) ? (int)$_POST['pieces'] : null;
         $id2 = isset($_POST['id2']) ? (int)$_POST['id2'] : null;
 
@@ -42,7 +37,7 @@
                     }
 
                 } catch (Exception $e) {
-                        echo "Error: " . $e->getMessage();
+                    $this->message->showMessage($template, "Error: " . $e->getMessage(), false);
                 }
             break;
             // Action which edit notes 
@@ -56,7 +51,7 @@
                         $editNote->addEditNote($id2,$note,$categories,$pieces,$template,$sqlInsertData);
                     }
                 } catch (Exception $e) {
-                    echo "Error: " . $e->getMessage();
+                    $this->message->showMessage($template, "Error: " . $e->getMessage(), false);
                 }
             break;
             // Action which deleting notes
@@ -67,12 +62,13 @@
                     $deleteFromDataBase = new DeleteFromDataBase($db,$message);
                     $deleteFromDataBase->deleteNote($id,$template,$sqlDelete);
                 } catch (Exception $e) {
-                    echo "Error: " . $e->getMessage();
+                    $this->message->showMessage($template, "Error: " . $e->getMessage(), false);
                 }
             break;
+            //Action register account
             case "register":
                 try{
-                    if (empty($username) || empty($email) || empty($password)) {
+                    if (empty($loginUser) || empty($email) || empty($password)) {
                         throw new Exception("Nie wprowadzono wszystkich danych.");
                     }
                     if (strlen($username) > 10) {
@@ -84,27 +80,33 @@
                     if ($password !== $checkPassword) {
                         throw new Exception("Hasła nie są identyczne.");
                     }
-                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                     $registerUser = new RegisterUser($db, $message);
-                    $registerUser->createAcount($username, $email, $hashedPassword, $template);
+                    $registerUser->createAcount($loginUser, $email, $password, $template);
                     
                 } catch (Exception $e) {
-                    echo "Error: " . $e->getMessage();
+                    $this->message->showMessage($template, "Error: " . $e->getMessage(), false);
                 }
             break;
+            //Action login account
             case "login":
-                try{
-                    if (empty($username) ||  empty($password)) {
+                try {
+                    if (empty($loginUser) || empty($password)) {
                         throw new Exception("Nie wprowadzono wszystkich danych.");
                     }
-                    $login = new LoginToAcount($db,$message);
-                    if($login->loginOnAccount($username,$password,$template)){
-                        $_SESSION['auth'] == true;
+                    $loginAccount = new LoginToAcount($db, $message);
+                    $loginAccount->login($loginUser, $password, $template);  
+                    if( $loginAccount->login($loginUser, $password, $template)){
+                        session_start();
+                        header("Location: /ToDoList/add");
+                        exit();
                     }
-                } catch(Exception $e){
-                    echo "Error: " . $e->getMessage();
+
+                } catch (Exception $e) {
+                    $this->message->showMessage($template, "Error: " . $e->getMessage(), false);
                 }
-        }
+            break;
+            
     }  
+}
 
 ?> 

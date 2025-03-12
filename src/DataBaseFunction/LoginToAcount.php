@@ -12,35 +12,40 @@ class LoginToAcount{
         $this->db = $db;
         $this->message = $message;
     }
-    public function loginOnAccount(string $username, string $password, string $template){
-        
+    public function login(string $login, string $password, string $template): bool {
         $conn = $this->db->connection();
-        if($conn->connect_errno){
+        if ($conn->connect_errno) {
             $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
             return false;
         }
-        $checkAcount = $conn->prepare('SELECT * FROM users WHERE username = ? LIMIT 1');
-
-        if (!$checkAcount) {
-            $this->message->showMessage($template, "Błąd zapytania SQL", false);
-            return false;
-        } 
-
-        $checkAcount->bind_param("s", $username);
-        $checkAcount->execute();
-        $result = $checkAcount->get_result();
-        
-        if ($result->num_rows > 0) {
-            $this->message->showMessage($template, "Konto nie istnieje", false);
-            return false;
-        } 
-
-        $user = $result->fetch_assoc();
-        if(!password_verify($password,$user['password'])){
-            $this->message->showMessage($template, "Niepoprawne hasło", false);
+    
+        $stmt = $conn->prepare('SELECT * FROM users WHERE login = ?');
+        if (!$stmt) {
+            $this->message->showMessage($template, "Błąd przygotowania zapytania SQL", false);
             return false;
         }
-    }
-}
+        $stmt->bind_param('s', $login);
+        $stmt->execute();
 
+        $result = $stmt->get_result();
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+            if (password_verify($password, $row['password'])) {
+                $this->message->showMessage($template, "Pomyślnie zalogowano ✅", false);
+                return true;
+                // session_start();
+                // $_SESSION['id'] = $row['id'];
+                // $_SESSION['login'] = $row['login'];
+                // header("Location: /ToDoList/add");
+                // exit();
+            } else {
+                $this->message->showMessage($template, "Nieprawidłowe hasło ❌", false);
+                return false;
+            }
+        } else {
+            $this->message->showMessage($template, "Konto nie istnieje ❌", false);
+            return false;
+        }
+    }     
+}
 ?>

@@ -13,36 +13,30 @@ class RegisterUser implements RegisterUserInterface{
         $this->db = $db;
         $this->message = $message;
     }
-    public function createAcount(string $username, string $email, string $password,string $template):bool{
+    public function createAcount(string $login, string $email, string $password,string $template):void{
+        //connection with data base
         $conn = $this->db->connection();
         if($conn->connect_errno){
             $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
+            return;
         }
-        $checkEmail = $conn->prepare("SELECT email FROM users WHERE email = ? ");
-        $checkEmail->bind_param("s", $email);
-        $checkEmail->execute();
-        $checkEmail->store_result();
-        
-        if ($checkEmail->num_rows > 0) {
-            $this->message->showMessage($template, "Email już istnieje", false);
-        }
-        $checkEmail->free_result();
-
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param('sss',$username,$email,$password);
+        // register user to data base
+        $passwordHash = password_hash($password,PASSWORD_ARGON2ID);
+        $stmt = $conn->prepare("INSERT INTO users (login, email, password) VALUES (?, ?, ?)");
 
         if (!$stmt) {
             $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
+            return;
         }
+        $stmt->bind_param('sss',$login,$email,$passwordHash);
         $result = $stmt->execute();
-            if ($result) {
-                $this->message->showMessage($template, "Pomyślnie zarejestrowano użytkownika: " . $username, true);
+
+        if ($result) {
+            $this->message->showMessage($template, "Pomyślnie zarejestrowano użytkownika: " . $login, true);
                 
-            } else {
-                $this->message->showMessage($template, "Rejestracja się nie powiodła", false);
-            }
-            
-        return $result;
+        } else {
+            $this->message->showMessage($template, "Rejestracja się nie powiodła", false);
+        }
 
         $stmt->close(); 
         $this->db->closeConnection();

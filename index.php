@@ -1,6 +1,7 @@
 <?php 
     require_once('config.php');
     use ShowNotes\ShowContent;
+
     use Steampixel\Route;
 
     Route::add('/home',function(){
@@ -17,6 +18,7 @@
     });
     Route::add('/add',function(){
        global $twig;
+
         try {
             $id = isset($_GET['modal_id']) ? $_GET['modal_id'] : null;
 

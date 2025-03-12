@@ -14,23 +14,23 @@
                 </li>
             </ul>
         </nav>
-        <form metod="POST" action = "src\DataBaseFunction\DataBaseActions.php">
+        <form id="loginForm">
         <div class="container_login">
             <label class="login_label"><span id="login">Logowanie</span></label>
             <div class="container_mb-3">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nazwa użytkownika</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="form-label">Login</label>
+                    <input type="text" class="form-control" id="loginUser" name="loginUser" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Hasło</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
                 </div>
-                <button type="submit" name="press" value="login" class="btn btn-primary">Zaloguj się</button>
+                <button type="submit" name="press" value="login" class="btn btn-primary" onclick="fetchAjaxFunction(event,'loginForm');">Zaloguj się</button>
             </div>
          </form>
         <div class="linia">LUB</div>
