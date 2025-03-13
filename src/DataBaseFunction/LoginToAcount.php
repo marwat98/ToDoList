@@ -33,11 +33,6 @@ class LoginToAcount{
             if (password_verify($password, $row['password'])) {
                 $this->message->showMessage($template, "Pomyślnie zalogowano ✅", false);
                 return true;
-                // session_start();
-                // $_SESSION['id'] = $row['id'];
-                // $_SESSION['login'] = $row['login'];
-                // header("Location: /ToDoList/add");
-                // exit();
             } else {
                 $this->message->showMessage($template, "Nieprawidłowe hasło ❌", false);
                 return false;

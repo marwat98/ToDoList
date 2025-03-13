@@ -1,7 +1,6 @@
 <?php 
     require_once('config.php');
     use ShowNotes\ShowContent;
-
     use Steampixel\Route;
 
     Route::add('/home',function(){
@@ -18,7 +17,6 @@
     });
     Route::add('/add',function(){
        global $twig;
-
         try {
             $id = isset($_GET['modal_id']) ? $_GET['modal_id'] : null;
 
@@ -31,9 +29,13 @@
 
         } catch (Exception $e) {
             $twig->display('message.html.twig',['message' => $e->getMessage()]);
-            exit();
         }
 
+    });
+    Route::add('/logout', function(){
+        session_destroy();
+        header("Location: /ToDoList/home");
+        exit();
     });
 
     Route::run('/ToDoList');

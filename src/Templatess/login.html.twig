@@ -14,7 +14,7 @@
                 </li>
             </ul>
         </nav>
-        <form id="loginForm">
+        <form id="loginForm" method="POST" action="src/DataBaseFunction/DataBaseActions.php">
         <div class="container_login">
             <label class="login_label"><span id="login">Logowanie</span></label>
             <div class="container_mb-3">
@@ -30,7 +30,7 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
                 </div>
-                <button type="submit" name="press" value="login" class="btn btn-primary" onclick="fetchAjaxFunction(event,'loginForm');">Zaloguj się</button>
+                <button type="submit" name="press" value="login" class="btn btn-primary">Zaloguj się</button>
             </div>
          </form>
         <div class="linia">LUB</div>

@@ -94,12 +94,12 @@
                         throw new Exception("Nie wprowadzono wszystkich danych.");
                     }
                     $loginAccount = new LoginToAcount($db, $message);
-                    $loginAccount->login($loginUser, $password, $template);  
-                    if( $loginAccount->login($loginUser, $password, $template)){
+                    if($loginAccount->login($loginUser, $password, $template)){
                         session_start();
+                        $_SESSION['auth'] = true;
                         header("Location: /ToDoList/add");
                         exit();
-                    }
+                    };  
 
                 } catch (Exception $e) {
                     $this->message->showMessage($template, "Error: " . $e->getMessage(), false);
