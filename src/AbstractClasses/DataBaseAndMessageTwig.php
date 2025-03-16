@@ -3,7 +3,10 @@ namespace AbstractClasses;
 use DataBaseConnection\DataBase;
 use MessageTwigFunction\MessageHandler;
 
-abstract class  AbstractClassAddEditNote{
+/**
+ * Abstract class which implements DataBase class and Message Twig
+ */
+abstract class  DataBaseAndMessageTwig{
     protected $db;
     protected $message;
 
@@ -11,8 +14,9 @@ abstract class  AbstractClassAddEditNote{
         $this->db = $db;
         $this->message = $message;
     }
-    abstract public function addEditNote(?int $id,string $note,string $categories, int $pieces, string $template,string $sqlInsert):bool;
+
 }
+
 
 
 ?>

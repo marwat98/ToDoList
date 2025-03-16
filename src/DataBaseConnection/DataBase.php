@@ -1,5 +1,6 @@
 <?php 
 namespace DataBaseConnection;
+
 class DataBase{
     private string $host;
     private string $username;
