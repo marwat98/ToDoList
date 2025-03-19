@@ -15,34 +15,40 @@
          * @param string $sqlDelete    SQL statement for delete.
          */
         public function deleteNote(int $id, string $template, string $sqlDelete):bool{
-
+            // Data base connection
             $conn = $this->db->connection();
-
             if ($conn->connect_errno) {
-                $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się", false);
+                $this->message->showMessage($template, "Połączenie z bazą danych nie powiodło się");
+                return false;
+            }
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sqlDelete);
+            if (!$stmt) {
+                $this->message->showMessage($template, "Błąd przygotowania zapytania");
+                return false;
+            }
+            // Bind parameters
+            if(!$stmt->bind_param("i", $id)){
+                $this->message->showMessage($template, "Błąd bindowania parametrów: " . $stmt->error);
+                $stmt->close(); 
+                $this->db->closeConnection();
                 return false;
             }
 
-             $stmt = $conn->prepare($sqlDelete);
-
-            if (!$stmt) {
-                $this->message->showMessage($template, "Błąd przygotowania zapytania", false);
-            }
-
-            $stmt->bind_param("i", $id);
-
+            // Execute parameters to data base
             $result = $stmt->execute();
 
-            if ($result) {
-                $this->message->showMessage($template, "Pomyślnie usunięto", true);
-            } else {
-                $this->message->showMessage($template, "Usunięcie notatki nie powiodło się", false);
-            }
-
-            return $result;
-
+            // Show success or failure message
+            $this->message->showMessage(
+                $template, 
+                $result ? "Pomyślnie usunięto" : "Usunięcie notatki nie powiodło się"
+            );
+            
+            // Close database resources
             $stmt->close(); 
             $this->db->closeConnection();
+
+            return $result;
         }
     }
 

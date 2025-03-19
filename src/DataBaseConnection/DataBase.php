@@ -15,6 +15,7 @@ class DataBase{
         $this->password = $password;
         $this->database = $database;
     }
+    // Connection with data base 
     public function connection(): ?\mysqli {
         if ($this->conn === null) {
             $this->conn = new \mysqli($this->host, $this->username, $this->password, $this->database);
@@ -25,6 +26,7 @@ class DataBase{
         }
         return $this->conn;
     }
+    // Close database resources
     public function closeConnection(): void {
         if ($this->conn !== null) {
             $this->conn->close();
